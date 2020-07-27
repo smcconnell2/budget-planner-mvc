@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package budgetplannermvc;
+package mainPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,13 +19,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
  * @author steve
  */
-public class FXMLDocumentController implements Initializable {
+public class MainPageController implements Initializable {
     
     @FXML
     private Label label;
@@ -43,7 +42,7 @@ public class FXMLDocumentController implements Initializable {
             stage.show();
             
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
             label.setText("Error on new button."); // Temp error checking
         }
     }
