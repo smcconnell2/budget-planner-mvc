@@ -33,8 +33,7 @@ public class MainPageController implements Initializable {
     private void handleNewButton(ActionEvent event) {
         label.setText("New Clicked");
         try {
-            
-            Parent root = FXMLLoader.load(getClass().getResource("/newBudget/newBudgetPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/newBudgetPage/newBudgetPage.fxml"));          
             Scene scene= new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("New Budget");

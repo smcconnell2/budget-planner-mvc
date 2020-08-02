@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="587.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newBudgetPage.NewBudgetPageController">
+
+    
+   <children>
+      
+      <Label fx:id="label" layoutX="78.0" layoutY="360.0" prefHeight="21.0" prefWidth="158.0" />
+      <HBox layoutY="480.0" prefHeight="107.0" prefWidth="554.0">
+         <children>
+            <AnchorPane prefHeight="107.0" prefWidth="561.0">
+               <children>
+                  
+                        <Button layoutX="470.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleSubmitClick" prefHeight="31.0" prefWidth="70.0" text="NEXT" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox layoutX="-1.0" prefHeight="100.0" prefWidth="551.0">
+         <children>
+            <AnchorPane prefHeight="100.0" prefWidth="555.0">
+               <children>
+                  <Label layoutX="187.0" layoutY="29.0" text="CREATE BUDGET">
+                     <font>
+                        <Font name="Arial Bold" size="38.0" />
+                     </font>
+                  </Label>
+                  
+                  <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <VBox layoutX="277.0" layoutY="144.0" prefHeight="353.0" prefWidth="240.0">
+         <children>
+            <Label contentDisplay="CENTER" prefHeight="43.0" prefWidth="240.0" text="EXPENSES" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+            </Label>
+            <ListView prefHeight="219.0" prefWidth="240.0" />
+            <Label contentDisplay="CENTER" prefHeight="43.0" prefWidth="240.0" text="MONTHLY EXPENSES" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </Label>
+            <Label contentDisplay="CENTER" prefHeight="43.0" prefWidth="240.0" text="YEARLY EXPENSES" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="27.0" layoutY="135.0" prefHeight="336.0" prefWidth="279.0">
+         <children>
+            <AnchorPane prefHeight="338.0" prefWidth="279.0">
+               <children>
+                  <ChoiceBox layoutX="55.0" layoutY="222.0" prefWidth="150.0" />
+                  
+                  <ComboBox fx:id="monthComboBox" layoutX="55.0" layoutY="14.0" prefWidth="150.0" promptText="Month">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="January" />
+                          <String fx:value="Febuary" />
+                          <String fx:value="March" />
+                          <String fx:value="April" />
+                          <String fx:value="May" />
+                          <String fx:value="June" />
+                          <String fx:value="July" />
+                          <String fx:value="August" />
+                          <String fx:value="September" />
+                          <String fx:value="October" />
+                          <String fx:value="November" />
+                          <String fx:value="December" />
+                        </FXCollections>
+                    </items>
+                  </ComboBox>
+                  
+                  <ComboBox fx:id="categoryComboBox" layoutX="55.0" layoutY="168.0" onAction="#handleCategoryClick" prefWidth="150.0" promptText="Category">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <Button onAction="#handleNewCategoryClick" text="New Category" />
+                              <Button text="Remove Category" />               
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+                  
+                  <CheckBox layoutX="55.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleCheckBox" text="Repeat each month" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      
+   </children> 
+    
+</AnchorPane>
