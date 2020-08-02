@@ -5,9 +5,13 @@
  */
 package budgetLogic;
 
+import utils.*;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Initially fills all months with this month
@@ -17,14 +21,18 @@ import java.util.Map;
 public class DefaultMonthBudget implements Serializable{
     
     private static final long serialVerisonUID = 4L;
-    Map<Integer, Category> generalCategoryMap = new HashMap<Integer, Category>();
+    private final static Logger LOGGER = Logger.getLogger(DefaultMonthBudget.class.getName());
+    
+    private BigDecimal income = new BigDecimal(0);
+    private BigDecimal totalExpenses = new BigDecimal(0);
+    Map<Integer, Expenses> generalCategoryMap = new HashMap<Integer, Expenses>();
     
     
     public DefaultMonthBudget(){
         
     }
     
-    public boolean addCategory(Category newCat){
+    public boolean addCategory(Expenses newCat){
         if(prioritiesConflict(newCat.getPriority())){
             return false;
         }
@@ -36,16 +44,28 @@ public class DefaultMonthBudget implements Serializable{
         this.generalCategoryMap.remove(key);
     }
     
+    public void setIncome(String value){
+        this.income = ScrubUserData.parseToBigDecimal(value);
+    }
+    
+    public void addTotalExpenses(String value){
+        this.totalExpenses = this.totalExpenses.add(ScrubUserData.parseToBigDecimal(value));
+    }
+    
     public void switchPriorities(int key1, int key2){
 
-        Category tempCat1 = generalCategoryMap.get(key1);
+        Expenses tempCat1 = generalCategoryMap.get(key1);
         tempCat1.setPriority(key2);
-        Category tempCat2 = generalCategoryMap.get(key2);
+        Expenses tempCat2 = generalCategoryMap.get(key2);
         tempCat2.setPriority(key1);
         
         generalCategoryMap.replace(key1, tempCat1, tempCat2);
         generalCategoryMap.replace(key2, tempCat2, tempCat1);
 
+    }
+    
+    public Map getCategoryMap(){
+        return this.generalCategoryMap;
     }
     
     private boolean prioritiesConflict(int priority){
