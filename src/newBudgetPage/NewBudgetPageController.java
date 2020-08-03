@@ -8,6 +8,7 @@ import budgetLogic.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -38,7 +40,7 @@ public class NewBudgetPageController implements Initializable {
     @FXML
     private TextField monthIncomeField;
     @FXML
-    private ListView<Expenses> expensesListview;
+    private ListView<Expenses> expensesListView;
     
     private ObservableList<Expenses> expensesList;
 
@@ -97,16 +99,31 @@ public class NewBudgetPageController implements Initializable {
     private void handleAddExpenseClick(ActionEvent event){
         messageToUser("Add Expense"); // temp check
         
-        ObservableList<String> names = FXCollections.observableArrayList(
-          "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
-        
         this.expensesList = FXCollections.observableArrayList(
                 new Expenses(1, "Test"),
                 new Expenses(2, "stuff"),
                 new Expenses(3, "other")
         );
-        this.expensesListview.setItems(FXCollections.observableArrayList(this.expensesList));
-        //this.expensesListview.setItems(FXCollections.observableArrayList(names));
+        this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
+        
+        newExpensePopup();
+    }
+    
+    private void newExpensePopup(){
+       
+        AddExpenseController controller = null;
+        try{
+            controller = new AddExpenseController();
+            Optional<ButtonType> option = controller.showAndWait();
+        }catch(IOException ex){
+            messageToUser("controller error");
+            Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        /*
+        this.expensesList.add(new Expenses(4, "new"));
+        this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));*/
     }
 
     

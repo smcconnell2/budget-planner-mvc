@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/newBudgetPage.fxml</file>
-            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/budgetLogic/DefaultMonthBudget.java</file>
-            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/utils/ScrubUserData.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/mainPage/MainPage.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/addExpense.fxml</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/NewBudgetPageController.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/AddExpenseController.java</file>
         </group>
     </open-files>
 </project-private>
