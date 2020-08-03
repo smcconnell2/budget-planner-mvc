@@ -32,7 +32,15 @@
                      </font>
                   </Label>
                   
-                  <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="46.0" prefWidth="78.0" text="BACK" />
+                  <Button 
+                      layoutX="14.0" 
+                      layoutY="12.0" 
+                      mnemonicParsing="false" 
+                      onAction="#handleBackButton" 
+                      prefHeight="46.0" 
+                      prefWidth="78.0" 
+                      text="BACK" 
+                  />
                </children>
             </AnchorPane>
          </children>

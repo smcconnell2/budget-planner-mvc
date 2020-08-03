@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package newBudgetPage;
+import newBudgetPage.addExpense.AddExpenseController;
 import budgetLogic.*;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -95,8 +97,8 @@ public class NewBudgetPageController implements Initializable {
         this.monthIncomeField.setText("works");
     }
     
-    @FXML
-    private void handleAddExpenseClick(ActionEvent event){
+    /*@FXML
+    private void handleAddExpenseClick(ActionEvent event) throws IOException{
         messageToUser("Add Expense"); // temp check
         
         this.expensesList = FXCollections.observableArrayList(
@@ -107,10 +109,26 @@ public class NewBudgetPageController implements Initializable {
         this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
         
         newExpensePopup();
-    }
+    }*/
     
-    private void newExpensePopup(){
-       
+    @FXML
+    private void handleAddExpenseClick() throws IOException{
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/newBudgetPage/addExpense/addExpense.fxml"));
+        Parent parent = fxmlLoader.load();
+        AddExpenseController dialogController = fxmlLoader.<AddExpenseController>getController();
+        //dialogController.setAppMainObservableList(tvObservableList);
+
+        Scene scene = new Scene(parent, 300, 200);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+        
+        
+        
+        
+        
+       /*
         AddExpenseController controller = null;
         try{
             controller = new AddExpenseController();
@@ -118,7 +136,7 @@ public class NewBudgetPageController implements Initializable {
         }catch(IOException ex){
             messageToUser("controller error");
             Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         
         /*
