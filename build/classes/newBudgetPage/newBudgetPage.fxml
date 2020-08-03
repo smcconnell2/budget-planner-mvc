@@ -13,7 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="587.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newBudgetPage.NewBudgetPageController">
+<AnchorPane prefHeight="587.0" 
+            prefWidth="520.0" 
+            xmlns="http://javafx.com/javafx/8.0.171" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="newBudgetPage.NewBudgetPageController"
+>
 
     
    <children>
@@ -91,7 +96,7 @@
                            </padding>
                         </Label>
                         <Label text="\$0" textFill="#a7a5a5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ListView fx:id="expensesListview" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="expensesListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

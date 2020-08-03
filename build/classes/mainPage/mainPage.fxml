@@ -5,7 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="360.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPage.MainPageController">
+<AnchorPane 
+    id="AnchorPane" 
+    prefHeight="360.0" 
+    prefWidth="446.0" 
+    xmlns="http://javafx.com/javafx/8.0.171" 
+    xmlns:fx="http://javafx.com/fxml/1" 
+    fx:controller="mainPage.MainPageController"
+>
     <children>
         <Button fx:id="newBtn" layoutX="149.0" layoutY="87.0" onAction="#handleNewButton" prefHeight="69.0" prefWidth="148.0" text="NEW">
          <font>
