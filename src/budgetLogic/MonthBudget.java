@@ -28,7 +28,7 @@ public class MonthBudget implements Serializable {
     private long monthlyExpenses; // look into which type to use for money
     private long monthlyIncome;
     
-    private Map<Integer, Expenses> expensesMap = new HashMap<Integer, Expenses>(); // integer will be priority number
+    private Map<Integer, Expense> expensesMap = new HashMap<Integer, Expense>(); // integer will be priority number
     
     /**
      * This may or may not be needed when assigning each month while using the
@@ -43,7 +43,7 @@ public class MonthBudget implements Serializable {
         this.expensesMap = catMap;
     }
     
-        public boolean addCategory(Expenses newCat){
+        public boolean addCategory(Expense newCat){
         if(prioritiesConflict(newCat.getPriority())){
             return false;
         }
@@ -57,9 +57,9 @@ public class MonthBudget implements Serializable {
     
     public void switchPriorities(int key1, int key2){
 
-        Expenses tempCat1 = expensesMap.get(key1);
+        Expense tempCat1 = expensesMap.get(key1);
         tempCat1.setPriority(key2);
-        Expenses tempCat2 = expensesMap.get(key2);
+        Expense tempCat2 = expensesMap.get(key2);
         tempCat2.setPriority(key1);
         
         expensesMap.replace(key1, tempCat1, tempCat2);
