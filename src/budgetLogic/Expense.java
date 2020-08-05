@@ -17,24 +17,26 @@ import javafx.scene.paint.Color;
  *
  * @author steve
  */
-public class Expenses implements Serializable, Comparable<Expenses>, Observable{
+public class Expense implements Serializable, Comparable<Expense>, Observable{
     
     private static final long serialVerisonUID = 3L;
-    private final static Logger LOGGER = Logger.getLogger(Expenses.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(Expense.class.getName());
     
     private int priority;
     private String name;
-    private Color color;
     private BigDecimal amount = new BigDecimal(0);
+    private Color color;
     
     
-    public Expenses(int p, String n, BigDecimal a){
+    
+    public Expense(int p, String n, BigDecimal a, Color c){
         this.name = n;
         this.priority = p;
         this.amount = a;
+        this.color = c;
     }
     
-    public Expenses(int p, String n){
+    public Expense(int p, String n){
         this.name = n;
         this.priority = p;
     }
@@ -56,7 +58,7 @@ public class Expenses implements Serializable, Comparable<Expenses>, Observable{
     }
     
     @Override
-    public int compareTo(Expenses m){
+    public int compareTo(Expense m){
         return this.priority - m.getPriority();
     }
     

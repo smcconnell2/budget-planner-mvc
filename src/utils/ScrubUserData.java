@@ -28,13 +28,15 @@ public class ScrubUserData {
     
     public static BigDecimal parseToBigDecimal(String value){
         try{
-            
+            BigDecimal temp = new BigDecimal(value); //Test to ensure works
+            return temp;
         }catch(NumberFormatException e){
             LOGGER.log(Level.SEVERE, "Error when parsing String to BigDecimal. " + value + " is incompatible.", e);
         }
-        finally{
+        /*finally{
             return new BigDecimal(0.00);
-        }
+        }*/
+        return new BigDecimal("0");
     }
     
     public static int parseInt(String value){
