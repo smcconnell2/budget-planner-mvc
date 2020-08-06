@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package newBudgetPage;
+import alertWindows.Alerts;
 import newBudgetPage.addExpense.AddExpenseController;
 import newBudgetPage.addExpense.ExpenseStruct;
 import budgetLogic.*;
+import interfaces.Controller;
+import enums.TextColor;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -30,18 +33,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Paint;
-import static javafx.scene.paint.Color.BLACK;
-import static javafx.scene.paint.Color.GRAY;
-import static javafx.scene.paint.Color.RED;
-
-
+import utils.ScrubUserData;
 
 /**
  * FXML Controller class
  *
  * @author steve
  */
-public class NewBudgetPageController implements Initializable {
+public class NewBudgetPageController implements Initializable, Controller {
 
     @FXML private Label label;
     @FXML private TextField monthIncomeField;
@@ -54,18 +53,9 @@ public class NewBudgetPageController implements Initializable {
     @FXML private ListView<Expense> expensesListView;
     
     private ObservableList<Expense> expensesList;
-
     private DefaultMonthBudget defaultMonth = new DefaultMonthBudget();
     
-    private Paint defaultColor = GRAY;
-    private Paint inputColor = BLACK;
-    private Paint errorColor = RED;
-    
-    // Some variable to hold the available months
-    //private Map<String, boolean> availableMonths = new HashMap<String, boolean>
-    // maybe use setItems to fill the list with available months
-    // also use setItems to populate category list
-        
+    private Alerts alerts = new Alerts();
     /**
      * Initializes the controller class.
      */
@@ -79,59 +69,60 @@ public class NewBudgetPageController implements Initializable {
         // is loaded properly first
     }    
     
-    @FXML
-    private void handleBackButton(ActionEvent event) {
-        messageToUser("Back Clicked"); // temp error checking
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/mainPage/mainPage.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Budget Planner");
-            stage.setScene(scene);
-            stage.show();
-            
-        } catch(IOException ex){
-            Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void messageToUser(String message){
+    
+    public void messageToUser(String message, Paint color){
+        this.label.setTextFill(color);
         this.label.setText(message);
     }
     
+    private void clearMessageToUser(){
+        this.label.setText("");
+    }
     
     @FXML
+    private void handleBackButton(ActionEvent event) {     
+        if(varifyBackPress()){
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("/mainPage/mainPage.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Budget Planner");
+                stage.setScene(scene);
+                stage.show();
+            } catch(IOException ex){
+                Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }       
+    }
+    
+    private boolean varifyBackPress(){
+        if(this.expensesList == null){
+            return true;
+        }
+        this.alerts.warning2Choice("Warning", "All expense data will be lost!", "Do you still want to go back?");
+        return true;
+    }
+
+    @FXML
     private void handleAddMonthIncomeClick(ActionEvent event){
-        messageToUser("Submit Month Income Clicked"); // temp check
+        
+        clearMessageToUser();
         
         String incomeValue = this.monthIncomeField.getText();// run against Regex
-        if(incomeValue.equals("")){
+        BigDecimal tempBD = ScrubUserData.parseToBigDecimal(incomeValue);
+        if(tempBD.intValue() < 0){
             this.monthIncomeValue.setText("$0.00");
+            messageToUser("Enter a valid dollar amount", TextColor.ERROR.getColor());
         }
         else{
             this.monthIncomeValue.setText("$" + incomeValue);
             this.defaultMonth.setIncome(incomeValue);
         }
         
-        this.monthIncomeValue.setTextFill(this.inputColor);
+        this.monthIncomeValue.setTextFill(TextColor.STANDARD.getColor());
         
-        updateYearlyIncomeTotal();
-        
+        updateYearlyIncomeTotal();   
     }
-    
-    /*@FXML
-    private void handleAddExpenseClick(ActionEvent event) throws IOException{
-        messageToUser("Add Expense"); // temp check
-        
-        this.expensesList = FXCollections.observableArrayList(
-                new Expense(1, "Test"),
-                new Expense(2, "stuff"),
-                new Expense(3, "other")
-        );
-        this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
-        
-        newExpensePopup();
-    }*/
     
     @FXML
     private void handleAddExpenseClick() throws IOException{
@@ -183,7 +174,7 @@ public class NewBudgetPageController implements Initializable {
             this.totalMonthlyExpensesValue.setText("$0.00");
         }
         
-        this.totalMonthlyExpensesValue.setTextFill(this.inputColor);
+        this.totalMonthlyExpensesValue.setTextFill(TextColor.STANDARD.getColor());
                
         updateYearlyExpensesTotal();   
     }
@@ -197,7 +188,7 @@ public class NewBudgetPageController implements Initializable {
             
             this.totalYearlyExpensesValue.setText("$" + this.defaultMonth.getTotalExpenses().multiply(new BigDecimal("12")).toString());
         }
-        this.totalYearlyExpensesValue.setTextFill(this.inputColor);  
+        this.totalYearlyExpensesValue.setTextFill(TextColor.STANDARD.getColor());  
     }
     
     private void updateYearlyIncomeTotal(){
@@ -207,12 +198,12 @@ public class NewBudgetPageController implements Initializable {
         else{
             this.yearlyIncomeValue.setText("$" + defaultMonth.getIncome().multiply(new BigDecimal("12")).toString());
         }      
-        this.yearlyIncomeValue.setTextFill(this.inputColor);
+        this.yearlyIncomeValue.setTextFill(TextColor.STANDARD.getColor());
     }
 
     
     @FXML
     private void handleNextClick(ActionEvent event){
-        messageToUser("Next Clicked"); // temp check
+        messageToUser("Next Clicked", TextColor.TEST.getColor()); // temp check
     }
 }

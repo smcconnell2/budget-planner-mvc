@@ -36,7 +36,7 @@ public class ScrubUserData {
         /*finally{
             return new BigDecimal(0.00);
         }*/
-        return new BigDecimal("0");
+        return new BigDecimal("-1");
     }
     
     public static int parseInt(String value){

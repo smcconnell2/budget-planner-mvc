@@ -1,14 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package enums;
 
-/**
- *
- * @author steve
- */
+import static javafx.scene.paint.Color.BLACK;
+import static javafx.scene.paint.Color.GRAY;
+import static javafx.scene.paint.Color.RED;
+import static javafx.scene.paint.Color.GREEN;
+import javafx.scene.paint.Paint;
+
 public enum TextColor {
+    ERROR(RED),
+    DISABLED(GRAY),
+    STANDARD(BLACK),
+    TEST(GREEN);
+    
+    private final Paint color;
+    
+    TextColor(Paint c){
+        this.color = c;
+    }
+    
+    public Paint getColor(){
+        return this.color;
+    }
     
 }
