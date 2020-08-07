@@ -1,4 +1,3 @@
-
 package enums;
 
 import static javafx.scene.paint.Color.BLACK;

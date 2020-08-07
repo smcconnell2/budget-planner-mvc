@@ -5,25 +5,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane 
-    id="AnchorPane" 
-    prefHeight="360.0" 
-    prefWidth="446.0" 
-    xmlns="http://javafx.com/javafx/8.0.171" 
-    xmlns:fx="http://javafx.com/fxml/1" 
-    fx:controller="mainPage.MainPageController"
->
+<AnchorPane id="AnchorPane" prefHeight="426.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPage.MainPageController">
     <children>
-        <Button fx:id="newBtn" layoutX="149.0" layoutY="87.0" onAction="#handleNewButton" prefHeight="69.0" prefWidth="148.0" text="NEW">
+        <Button fx:id="newBtn" layoutX="67.0" layoutY="179.0" onAction="#handleNewButton" prefHeight="69.0" prefWidth="148.0" text="NEW">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Button>
-        <Button fx:id="loadBtn" layoutX="149.0" layoutY="200.0" onAction="#handleLoadButton" prefHeight="69.0" prefWidth="148.0" text="LOAD">
+        <Button fx:id="loadBtn" layoutX="274.0" layoutY="179.0" onAction="#handleLoadButton" prefHeight="69.0" prefWidth="148.0" text="LOAD">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="295.0" minHeight="16" minWidth="69" prefHeight="35.0" prefWidth="168.0" />
+        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="161.0" layoutY="276.0" minHeight="16" minWidth="69" prefHeight="35.0" prefWidth="168.0" />
+      <Label layoutX="67.0" layoutY="39.0" text="BUDGET PLANNER" textFill="#cc9c76">
+         <font>
+            <Font name="Arial Bold" size="38.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

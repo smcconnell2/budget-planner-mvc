@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package newBudgetPage;
-import alertWindows.Alerts;
+import dialogWindows.Alerts;
 import newBudgetPage.addExpense.AddExpenseController;
-import newBudgetPage.addExpense.ExpenseStruct;
+import Structs.ExpenseStruct;
+import Structs.MonthStruct;
 import budgetLogic.*;
 import interfaces.Controller;
 import enums.TextColor;
@@ -14,12 +10,15 @@ import enums.TextColor;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,14 +93,6 @@ public class NewBudgetPageController implements Initializable, Controller {
             }
         }       
     }
-    
-    private boolean varifyBackPress(){
-        if(this.expensesList == null){
-            return true;
-        }
-        this.alerts.warning2Choice("Warning", "All expense data will be lost!", "Do you still want to go back?");
-        return true;
-    }
 
     @FXML
     private void handleAddMonthIncomeClick(ActionEvent event){
@@ -111,17 +102,40 @@ public class NewBudgetPageController implements Initializable, Controller {
         String incomeValue = this.monthIncomeField.getText();// run against Regex
         BigDecimal tempBD = ScrubUserData.parseToBigDecimal(incomeValue);
         if(tempBD.intValue() < 0){
-            this.monthIncomeValue.setText("$0.00");
             messageToUser("Enter a valid dollar amount", TextColor.ERROR.getColor());
         }
         else{
-            this.monthIncomeValue.setText("$" + incomeValue);
-            this.defaultMonth.setIncome(incomeValue);
+            if(verifyAddNewMonthIncomePress()){
+                this.monthIncomeValue.setText("$" + incomeValue);
+                this.defaultMonth.setIncome(incomeValue);
+            } 
         }
         
         this.monthIncomeValue.setTextFill(TextColor.STANDARD.getColor());
         
         updateYearlyIncomeTotal();   
+    }
+    
+    private boolean verifyAddNewMonthIncomePress(){
+        return this.alerts.warning2Choice("Warning", "Month Income already has a value.", "Overwrite Month Income value?");
+    }
+    
+    private boolean varifyBackPress(){
+        if(this.expensesList == null){
+            return true;
+        }
+        return this.alerts.warning2Choice("Warning", "All expense data will be lost!", "Do you still want to go back?");
+    }
+    
+    private boolean verifyNextPress(){
+        if(this.expensesList == null){
+            this.alerts.warning("Error", "You must add an expense to move on."
+                    + "\n\nTry adding a 'Bills' expense."
+                    + "\nOr an 'Entertainment' expense."
+            );
+            return false;
+        }
+        return true;
     }
     
     @FXML
@@ -153,6 +167,9 @@ public class NewBudgetPageController implements Initializable, Controller {
     }
     
     private void updateExpenseListDisplay(){
+        SortedList<Expense> sorted = this.expensesList.sorted();
+        this.expensesList.setAll(sorted);
+        
         this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
     }
     /**
@@ -168,6 +185,7 @@ public class NewBudgetPageController implements Initializable, Controller {
             for(Expense e: this.expensesList){
                 total.add(e.getAmount());
             }
+            this.defaultMonth.addTotalExpenses(total.toString());
             this.totalMonthlyExpensesValue.setText("$" + total.toString());
         }
         else{
@@ -200,10 +218,34 @@ public class NewBudgetPageController implements Initializable, Controller {
         }      
         this.yearlyIncomeValue.setTextFill(TextColor.STANDARD.getColor());
     }
+    
+    private void fillMonthStructValues(){
+       Map<Integer, Expense> tempMap = new HashMap<>();
+       for(Expense e: this.expensesList){
+           tempMap.put(e.getPriority(),e);
+       }      
+       MonthStruct.expenseMap = tempMap;
+       MonthStruct.income = this.defaultMonth.getIncome();
+       MonthStruct.totalExpenses = this.defaultMonth.getTotalExpenses();
+    }
 
     
     @FXML
     private void handleNextClick(ActionEvent event){
-        messageToUser("Next Clicked", TextColor.TEST.getColor()); // temp check
+          //MonthStruct.expenseMap = this.expensesList;
+        if(verifyNextPress()){
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/editReviewYearBudget/editReviewYearBudget.fxml"));          
+                Scene scene= new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Review Year Budget");
+                stage.setScene(scene);
+                stage.show();
+            
+            } catch (IOException ex) {
+                Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
+                messageToUser("Error on NEXT button", TextColor.ERROR.getColor());
+            }
+        }     
     }
 }
