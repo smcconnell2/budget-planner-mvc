@@ -5,10 +5,12 @@
  */
 package utils;
 
+
 /**
  *
  * @author steve
  */
 public class Calculations {
+    
     
 }
