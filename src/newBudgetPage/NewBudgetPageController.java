@@ -6,6 +6,7 @@ import Structs.MonthStruct;
 import budgetLogic.*;
 import interfaces.Controller;
 import enums.TextColor;
+import newBudgetPage.expenseCellFactory.ExpenseListCellController;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,8 +16,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -151,7 +152,6 @@ public class NewBudgetPageController implements Initializable, Controller {
         stage.setScene(scene);
         stage.showAndWait();        
         
-       updateMonthlyExpensesTotal();
        if(ExpenseStruct.submitClicked){
            ExpenseStruct.submitClicked = false;
            addExpense();
@@ -164,14 +164,20 @@ public class NewBudgetPageController implements Initializable, Controller {
         }
         this.expensesList.add(new Expense(ExpenseStruct.priority, ExpenseStruct.name, ExpenseStruct.amount, ExpenseStruct.color));
         updateExpenseListDisplay();
+        updateMonthlyExpensesTotal();
+        
     }
     
     private void updateExpenseListDisplay(){
         SortedList<Expense> sorted = this.expensesList.sorted();
         this.expensesList.setAll(sorted);
         
-        this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
+        //this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
+        
+        this.expensesListView.setItems(this.expensesList);
+        this.expensesListView.setCellFactory(customListView -> new ExpenseListCellController());
     }
+    
     /**
      * Iterates through each element in list of expenses and adds the total
      * value allocated for each expense and updates displayed monthly expense
@@ -183,7 +189,7 @@ public class NewBudgetPageController implements Initializable, Controller {
         if(this.expensesList != null){
             BigDecimal total = new BigDecimal("0.00");
             for(Expense e: this.expensesList){
-                total.add(e.getAmount());
+                total = total.add(e.getAmount());
             }
             this.defaultMonth.addTotalExpenses(total.toString());
             this.totalMonthlyExpensesValue.setText("$" + total.toString());
