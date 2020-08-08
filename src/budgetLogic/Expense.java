@@ -56,11 +56,11 @@ public class Expense implements Serializable, Comparable<Expense>, Observable{
     public int compareTo(Expense m){
         return this.priority - m.getPriority();
     }
-    
+    /*
     @Override
     public String toString(){
-        return this.name + "\n" + "Priority: " + this.priority;
-    }
+        return this.name + "\n" + "Priority: " + this.priority + "Amount " + getAmount().toString();
+    }*/
 
     @Override
     public void addListener(InvalidationListener listener) {

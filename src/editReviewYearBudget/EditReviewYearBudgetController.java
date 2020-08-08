@@ -5,6 +5,8 @@
  */
 package editReviewYearBudget;
 
+import budgetLogic.Expense;
+import budgetLogic.MonthBudget;
 import enums.TextColor;
 import interfaces.Controller;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +36,7 @@ import newBudgetPage.NewBudgetPageController;
 public class EditReviewYearBudgetController implements Initializable, Controller {
     
     @FXML private Label label;
+    private ObservableList<MonthBudget> monthList;
     /**
      * Initializes the controller class.
      */
@@ -40,6 +44,12 @@ public class EditReviewYearBudgetController implements Initializable, Controller
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @Override
+    public void messageToUser(String message, Paint color) {
+        this.label.setTextFill(color);
+        this.label.setText(message);
+    }
     
         @FXML
     public void handleFinishClick(){
@@ -62,6 +72,10 @@ public class EditReviewYearBudgetController implements Initializable, Controller
         }       
     }
     
+    private void editMonth(){
+        
+    }
+    
     private boolean varifyBackPress(){
         // add logic to check values
         return true;
@@ -72,9 +86,5 @@ public class EditReviewYearBudgetController implements Initializable, Controller
         messageToUser("Add Year Clicked", TextColor.TEST.getColor());
     }
 
-    @Override
-    public void messageToUser(String message, Paint color) {
-        this.label.setTextFill(color);
-        this.label.setText(message);
-    }
+
 }

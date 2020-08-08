@@ -4,6 +4,7 @@ import enums.MonthName;
 import utils.AssignMonthEnum;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -20,8 +21,8 @@ public class MonthBudget implements Serializable {
     
     private MonthName name;
     
-    private long monthlyExpenses; // look into which type to use for money
-    private long monthlyIncome;
+    private BigDecimal monthlyExpenses; // look into which type to use for money
+    private BigDecimal monthlyIncome;
     
     private Map<Integer, Expense> expensesMap = new HashMap<Integer, Expense>(); // integer will be priority number
     
@@ -33,9 +34,9 @@ public class MonthBudget implements Serializable {
         this.name = AssignMonthEnum.getMonthName(month);
     }
     
-    public MonthBudget(int month, Map catMap){
+    public MonthBudget(int month, Map expMap){
         this.name = AssignMonthEnum.getMonthName(month);
-        this.expensesMap = catMap;
+        this.expensesMap = expMap;
     }
     
         public boolean addCategory(Expense newCat){
@@ -48,6 +49,25 @@ public class MonthBudget implements Serializable {
     
             public void remove(int key){
         this.expensesMap.remove(key);
+    }
+            
+    public String getName(){
+        return this.name.getReadable();
+    }
+    
+    public BigDecimal getMonthlyExpenses(){
+        updateMonthlyExpenses();
+        return this.monthlyExpenses;
+    }
+    
+    private void updateMonthlyExpenses(){
+        BigDecimal tempBD = new BigDecimal("0.00");
+
+        for(Map.Entry<Integer, Expense> pair: this.expensesMap.entrySet()){
+            tempBD = tempBD.add(pair.getValue().getAmount());
+        }
+        this.monthlyExpenses = tempBD;
+        
     }
     
     public void switchPriorities(int key1, int key2){
@@ -64,5 +84,10 @@ public class MonthBudget implements Serializable {
     
     private boolean prioritiesConflict(int priority){
         return this.expensesMap.get(priority) != null; 
+    }
+    
+    @Override
+    public String toString(){
+        return this.name.getReadable();
     }
 }
