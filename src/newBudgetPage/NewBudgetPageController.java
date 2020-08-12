@@ -172,7 +172,6 @@ public class NewBudgetPageController implements Initializable, Controller {
         SortedList<Expense> sorted = this.expensesList.sorted();
         this.expensesList.setAll(sorted);
         
-        //this.expensesListView.setItems(FXCollections.observableArrayList(this.expensesList));
         
         this.expensesListView.setItems(this.expensesList);
         this.expensesListView.setCellFactory(customListView -> new ExpenseListCellController());
@@ -238,7 +237,7 @@ public class NewBudgetPageController implements Initializable, Controller {
     
     @FXML
     private void handleNextClick(ActionEvent event){
-          //MonthStruct.expenseMap = this.expensesList;
+        fillMonthStructValues();
         if(verifyNextPress()){
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/editReviewYearBudget/editReviewYearBudget.fxml"));          

@@ -1,12 +1,16 @@
 package editReviewYearBudget.monthCellFactory;
 
-import budgetLogic.Expense;
 import budgetLogic.MonthBudget;
+import dialogWindows.Alerts;
+import eventHandlers.EditMonthEventHandler;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
@@ -20,7 +24,8 @@ public class MonthListCellController extends ListCell<MonthBudget> {
     
     @FXML private Label nameLabel;
     @FXML private Label incomeLabel;
-    @FXML private Label expenseTotalLabel;
+    @FXML private Label totalExpensesLabel;
+    @FXML private Button editMonthBtn;
     @FXML private GridPane gridPane;
     
     private FXMLLoader loader;
@@ -46,13 +51,23 @@ public class MonthListCellController extends ListCell<MonthBudget> {
                 }
 
             }
-            
-            priorityLabel.setText(month.getPriority() + "");
-            nameLabel.setText(month.getName());
-            amountLabel.setText(month.getAmount() + "");
-            
+            setCellProperties(month);
             setText(null);
             setGraphic(this.gridPane);
          }   
     }   
+    
+    private void setCellProperties(MonthBudget month){
+            this.nameLabel.setText(month.getName());
+            this.incomeLabel.setText(month.getMonthlyIncome().toString());
+            this.totalExpensesLabel.setText(month.getMonthlyExpenses().toString());
+            
+            /*this.editMonthBtn.setOnAction(new EventHandler<ActionEvent>(){
+               @Override public void handle(ActionEvent e){
+                   new Alerts().warning("Test", "This is a test for this month");
+               } 
+            });*/
+            EditMonthEventHandler eventHandle = new EditMonthEventHandler(month);
+            this.editMonthBtn.setOnAction(eventHandle);
+    }
 }

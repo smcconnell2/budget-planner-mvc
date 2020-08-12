@@ -19,12 +19,11 @@ public class MonthBudget implements Serializable {
     private static final long serialVerisonUID = 2L;
     private final static Logger LOGGER = Logger.getLogger(MonthBudget.class.getName());
     
-    private MonthName name;
+    private MonthName name;    
+    private BigDecimal monthlyExpenses = new BigDecimal("0.00");
+    private BigDecimal monthlyIncome = new BigDecimal("0.00");
     
-    private BigDecimal monthlyExpenses; // look into which type to use for money
-    private BigDecimal monthlyIncome;
-    
-    private Map<Integer, Expense> expensesMap = new HashMap<Integer, Expense>(); // integer will be priority number
+    private Map<Integer, Expense> expensesMap = new HashMap<Integer, Expense>(); 
     
     /**
      * This may or may not be needed when assigning each month while using the
@@ -53,6 +52,10 @@ public class MonthBudget implements Serializable {
             
     public String getName(){
         return this.name.getReadable();
+    }
+    
+    public BigDecimal getMonthlyIncome(){
+        return this.monthlyIncome;
     }
     
     public BigDecimal getMonthlyExpenses(){
