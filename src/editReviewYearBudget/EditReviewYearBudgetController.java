@@ -5,16 +5,20 @@
  */
 package editReviewYearBudget;
 
+import Structs.MonthStruct;
 import budgetLogic.Expense;
 import budgetLogic.MonthBudget;
+import editReviewYearBudget.monthCellFactory.MonthListCellController;
 import enums.TextColor;
 import interfaces.Controller;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import newBudgetPage.NewBudgetPageController;
@@ -36,13 +41,17 @@ import newBudgetPage.NewBudgetPageController;
 public class EditReviewYearBudgetController implements Initializable, Controller {
     
     @FXML private Label label;
+    @FXML private ListView monthListView;
+    
     private ObservableList<MonthBudget> monthList;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        initializeMonthList();
     }    
     
     @Override
@@ -51,9 +60,29 @@ public class EditReviewYearBudgetController implements Initializable, Controller
         this.label.setText(message);
     }
     
-        @FXML
+    private void initializeMonthList(){
+        
+        if(this.monthList == null){
+            this.monthList = FXCollections.observableArrayList();
+        }
+        
+        for(int i = 1; i < 13; i ++){
+            this.monthList.add(new MonthBudget(i, MonthStruct.expenseMap));
+        }
+        //this.monthList.add(new MonthBudget(1, MonthStruct.expenseMap));
+        updateMonthListDisplay();        
+    }
+    
+    private void updateMonthListDisplay(){
+        
+        this.monthListView.setItems(this.monthList);
+        this.monthListView.setCellFactory(customListView -> new MonthListCellController());
+    }
+    
+    @FXML
     public void handleFinishClick(){
         messageToUser("Finished Clicked", TextColor.TEST.getColor());
+        initializeMonthList();
     }
     
     @FXML

@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package newBudgetPage.expenseCellFactory;
 
 import budgetLogic.Expense;
+import dialogWindows.Alerts;
+import eventHandlers.EditExpenseEventHandler;
+
 import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
@@ -23,6 +25,7 @@ public class ExpenseListCellController extends ListCell<Expense> {
     @FXML private Label priorityLabel;
     @FXML private Label nameLabel;
     @FXML private Label amountLabel;
+    @FXML private Button editExpenseBtn;
     @FXML private GridPane gridPane;
     
     private FXMLLoader loader;
@@ -31,7 +34,7 @@ public class ExpenseListCellController extends ListCell<Expense> {
     protected void updateItem(Expense expense, boolean empty){
         super.updateItem(expense, empty);
         
-         if(empty || expense == null) {
+        if(empty || expense == null) {
 
             setText(null);
             setGraphic(null);
@@ -44,17 +47,22 @@ public class ExpenseListCellController extends ListCell<Expense> {
                 try {
                     loader.load();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); // user LOGGER class here to report potential errors
                 }
 
-            }
-            
-            priorityLabel.setText(expense.getPriority() + "");
-            nameLabel.setText(expense.getName());
-            amountLabel.setText(expense.getAmount() + "");
-            
+            }           
+            setCellProperties(expense);
             setText(null);
             setGraphic(this.gridPane);
-         }   
-    }   
+        }   
+    } 
+    
+    private void setCellProperties(Expense expense){
+        this.priorityLabel.setText(expense.getPriority() + "");
+        this.nameLabel.setText(expense.getName());
+        this.amountLabel.setText(expense.getAmount() + "");
+
+        EditExpenseEventHandler eventHandle = new EditExpenseEventHandler(expense);
+        this.editExpenseBtn.setOnAction(eventHandle);       
+    }    
 }

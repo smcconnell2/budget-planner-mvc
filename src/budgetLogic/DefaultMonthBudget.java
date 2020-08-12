@@ -65,7 +65,7 @@ public class DefaultMonthBudget implements Serializable{
 
     }
     
-    public Map getCategoryMap(){
+    public Map getExpenseMap(){
         return this.expenseMap;
     }
     
