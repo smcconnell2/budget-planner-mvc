@@ -6,13 +6,11 @@
 package editReviewYearBudget;
 
 import Structs.MonthStruct;
-import budgetLogic.Expense;
 import budgetLogic.MonthBudget;
 import editReviewYearBudget.monthCellFactory.MonthListCellController;
 import enums.TextColor;
 import interfaces.Controller;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -80,9 +78,21 @@ public class EditReviewYearBudgetController implements Initializable, Controller
     }
     
     @FXML
-    public void handleFinishClick(){
-        messageToUser("Finished Clicked", TextColor.TEST.getColor());
+    public void handleFinishClick(ActionEvent event){
+        
         initializeMonthList();
+        
+         try{
+            Parent root = FXMLLoader.load(getClass().getResource("/finalBudgetPage/finalBudgetPage.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("MY Budget");
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException ex){
+            Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     @FXML

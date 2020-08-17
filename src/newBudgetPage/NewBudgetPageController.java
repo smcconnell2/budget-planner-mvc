@@ -143,8 +143,7 @@ public class NewBudgetPageController implements Initializable, Controller {
     private void handleAddExpenseClick() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/newBudgetPage/addExpense/addExpense.fxml"));
         Parent parent = fxmlLoader.load();
-        AddExpenseController dialogController = fxmlLoader.<AddExpenseController>getController();
-        //dialogController.setAppMainObservableList(tvObservableList);
+        //AddExpenseController dialogController = fxmlLoader.<AddExpenseController>getController();
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();

@@ -45,6 +45,26 @@ public class MainPageController implements Initializable, Controller {
         }
     }
     
+    /**
+     * THIS IS FOR TESTING PURPOSES ONLY
+     * @param event 
+     */
+    @FXML
+    public void handleTestButton(ActionEvent event){
+        
+         try{
+            Parent root = FXMLLoader.load(getClass().getResource("/finalBudgetPage/finalBudgetPage.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("MY Budget");
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException ex){
+            messageToUser("Error in test button.", TextColor.ERROR.getColor());
+        }
+        
+    }
+    
     @FXML
     private void handleLoadButton(ActionEvent event) {
         messageToUser("Load Clicked", TextColor.TEST.getColor());
