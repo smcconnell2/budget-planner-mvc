@@ -61,12 +61,7 @@ public class MonthListCellController extends ListCell<MonthBudget> {
             this.nameLabel.setText(month.getName());
             this.incomeLabel.setText(month.getMonthlyIncome().toString());
             this.totalExpensesLabel.setText(month.getMonthlyExpenses().toString());
-            
-            /*this.editMonthBtn.setOnAction(new EventHandler<ActionEvent>(){
-               @Override public void handle(ActionEvent e){
-                   new Alerts().warning("Test", "This is a test for this month");
-               } 
-            });*/
+
             EditMonthEventHandler eventHandle = new EditMonthEventHandler(month);
             this.editMonthBtn.setOnAction(eventHandle);
     }
