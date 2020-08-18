@@ -70,7 +70,7 @@ public class MainPageController implements Initializable, Controller {
     }
     
     private void initMainImage(){
-        Image image = new Image("/images/main2.png");
+        Image image = new Image("/images/main.png");
         this.mainImage.setImage(image);
     }
     
