@@ -19,7 +19,7 @@
          <children>
             <AnchorPane prefHeight="100.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="178.0" layoutY="29.0" text="ADD EXPENSE" textFill="#cc9c76">
+                  <Label layoutX="178.0" layoutY="29.0" text="ADD EXPENSE" textFill="#58d68d">
                      <font>
                         <Font name="Arial Bold" size="38.0" />
                      </font>

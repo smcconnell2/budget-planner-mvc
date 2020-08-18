@@ -25,11 +25,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import newBudgetPage.NewBudgetPageController;
+import utils.GlobalButtonInfo;
 
 /**
  * FXML Controller class
@@ -40,6 +44,7 @@ public class EditReviewYearBudgetController implements Initializable, Controller
     
     @FXML private Label label;
     @FXML private ListView monthListView;
+    @FXML private Button addIncomeBtn;
     
     private ObservableList<MonthBudget> monthList;
     
@@ -48,9 +53,21 @@ public class EditReviewYearBudgetController implements Initializable, Controller
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        initAddIncome();
         initializeMonthList();
     }    
+    
+    private void initAddIncome(){
+        this.addIncomeBtn.setTooltip(new Tooltip("Add Income"));
+        ImageView view = new ImageView("/images/plus.png");
+        
+        view.setFitHeight(GlobalButtonInfo.plusIconHeight);
+        view.setPreserveRatio(true);
+        view.setSmooth(true);
+        view.setCache(true);
+        
+        this.addIncomeBtn.setGraphic(view);
+    }
     
     @Override
     public void messageToUser(String message, Paint color) {

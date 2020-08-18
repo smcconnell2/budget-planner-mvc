@@ -1,11 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalBudgetPage.menu.MenuController">
-    
+<AnchorPane id="AnchorPane" prefHeight="829.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalBudgetPage.menu.MenuController">
+   <children>
+      <HBox prefHeight="128.0" prefWidth="716.0">
+         <children>
+            <AnchorPane prefHeight="128.0" prefWidth="730.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="172.0" layoutY="18.0" prefHeight="115.0" prefWidth="372.0" text="MENU" textFill="#ff5733">
+                     <font>
+                        <Font name="System Bold" size="64.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <GridPane layoutX="232.0" layoutY="190.0" prefHeight="486.0" prefWidth="253.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="saveBtn" layoutX="40.0" layoutY="13.0" mnemonicParsing="false" onAction="#onSaveBtnClick" prefHeight="82.0" prefWidth="173.0" text="SAVE" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="saveAsBtn" layoutX="40.0" layoutY="13.0" mnemonicParsing="false" onAction="#onSaveAsBtnClick" prefHeight="82.0" prefWidth="173.0" text=" SAVE AS" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <children>
+                  <Button fx:id="quitBtn1" layoutX="40.0" layoutY="13.0" mnemonicParsing="false" onAction="#onQuitBtnClick" prefHeight="82.0" prefWidth="173.0" text="QUIT" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="loadBtn" layoutX="40.0" layoutY="13.0" mnemonicParsing="false" onAction="#onLoadBtnClick" prefHeight="82.0" prefWidth="173.0" text="LOAD" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="mainMenuBtn" layoutX="40.0" layoutY="13.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="173.0" text="MAIN MENU" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <HBox layoutX="1.0" layoutY="714.0" prefHeight="115.0" prefWidth="716.0">
+         <children>
+            <AnchorPane prefHeight="115.0" prefWidth="726.0">
+               <children>
+                  <Button fx:id="cancelBtn" layoutX="581.0" layoutY="29.0" mnemonicParsing="false" onAction="#onCancelBtnClick" prefHeight="70.0" prefWidth="121.0" text="CANCEL" textFill="#581845">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="label" contentDisplay="CENTER" layoutX="201.0" layoutY="43.0" prefHeight="34.0" prefWidth="253.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

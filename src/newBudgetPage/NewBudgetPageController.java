@@ -27,12 +27,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Paint;
+import utils.GlobalButtonInfo;
 import utils.ScrubUserData;
 
 /**
@@ -50,6 +54,9 @@ public class NewBudgetPageController implements Initializable, Controller {
     @FXML private Label yearlyIncome;
     @FXML private Label yearlyIncomeValue;
     
+    @FXML private Button addExpenseBtn;
+    @FXML private Button addIncomeBtn;
+    
     @FXML private ListView<Expense> expensesListView;
     
     private ObservableList<Expense> expensesList;
@@ -61,13 +68,33 @@ public class NewBudgetPageController implements Initializable, Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initAddExpense();
+        initAddIncome();
+    }
+
+    private void initAddExpense(){
+        this.addExpenseBtn.setTooltip(new Tooltip("Add Expense"));
+        ImageView view = new ImageView("/images/plus.png");
         
+        view.setFitHeight(GlobalButtonInfo.plusIconHeight);
+        view.setPreserveRatio(true);
+        view.setSmooth(true);
+        view.setCache(true);
         
+        this.addExpenseBtn.setGraphic(view);
+    }
+    
+    private void initAddIncome(){
+        this.addIncomeBtn.setTooltip(new Tooltip("Add Income"));
+        ImageView view = new ImageView("/images/plus.png");
         
-        // is called once all @FXML methods are called and loaded
-        // maybe use to populate fields with data to ensure that everything
-        // is loaded properly first
-    }    
+        view.setFitHeight(GlobalButtonInfo.plusIconHeight);
+        view.setPreserveRatio(true);
+        view.setSmooth(true);
+        view.setCache(true);
+        
+        this.addIncomeBtn.setGraphic(view);
+    }
     
     
     public void messageToUser(String message, Paint color){

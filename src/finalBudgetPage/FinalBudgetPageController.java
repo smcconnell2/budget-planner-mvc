@@ -5,7 +5,6 @@
  */
 package finalBudgetPage;
 
-import enums.TextColor;
 import interfaces.Controller;
 import java.io.IOException;
 import java.net.URL;
@@ -17,10 +16,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.GlobalButtonInfo;
 
 /**
  * FXML Controller class
@@ -30,34 +33,61 @@ import javafx.stage.Stage;
 public class FinalBudgetPageController extends Application implements Initializable, Controller {
     
     @FXML private Label budgetTabLabel;
+    @FXML private Button aboutBtn;
+    @FXML private Button menuBtn;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        initAboutBtn();
+        initMenuBtn();
     }  
     
+    private void initAboutBtn(){
+        this.aboutBtn.setTooltip(new Tooltip("About Creator"));
+        ImageView view = new ImageView("/images/about.png");
+        
+        view.setFitHeight(GlobalButtonInfo.standardMidIconHeight);
+        view.setPreserveRatio(true);
+        view.setSmooth(true);
+        view.setCache(true);
+        
+        this.aboutBtn.setGraphic(view);
+    }
     
-    
+    private void initMenuBtn(){
+        this.menuBtn.setTooltip(new Tooltip("Menu"));
+        ImageView view = new ImageView("/images/menu2.png");
+        
+        view.setFitHeight(GlobalButtonInfo.standardMidIconHeight);
+        view.setPreserveRatio(true);
+        view.setSmooth(true);
+        view.setCache(true);
+        
+        this.menuBtn.setGraphic(view);
+    }
+
     @FXML
     public void handleAboutBtnClick() throws IOException{
-        //this.author.aboutAuthor(this);
-        
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/finalBudgetPage/about/about.fxml"));
+        loadWindow("/about/about.fxml");  
+    }
+    
+    @FXML
+    public void handleMenuBtnClick(ActionEvent e) throws IOException{
+        loadWindow("/finalBudgetPage/menu/menu.fxml");
+    }
+    
+    private void loadWindow(String filePath) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filePath));
         Parent parent = fxmlLoader.load();
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
-        stage.showAndWait();  
-    }
-    
-    @FXML
-    public void handleMenuBtnClick(ActionEvent e){
-        messageToUser("Menu Clicked", TextColor.TEST.getColor());
+        stage.showAndWait();
     }
 
     @Override
