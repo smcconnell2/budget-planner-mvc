@@ -1,4 +1,4 @@
-package finalBudgetPage.about;
+package about;
 
 import enums.TextColor;
 import interfaces.Controller;
@@ -13,10 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import static javafx.scene.input.Clipboard.getSystemClipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import utils.GlobalButtonInfo;
 
 /**
  * FXML Controller class
@@ -30,34 +33,48 @@ public class AboutController extends Application implements Initializable, Contr
     
     @FXML private Hyperlink gitHubLink;
     @FXML private Hyperlink linkedInLink;
+    @FXML private Button copyBtn;
     @FXML private Button doneBtn;
     @FXML private Label label;
-    
-    private final double widthHeight = 60;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //messageToUser("Initialized", TextColor.TEST.getColor());
-        setGitHubImage();
-        setLinkedInImage();
+        initGitHubLink();
+        initLinkedInLink();
+        initCopyClipBoardBtn();
+        
     }
     
-    private void setGitHubImage(){
-        ImageView gitHubLogoView = new ImageView();
-        gitHubLogoView.setFitHeight(this.widthHeight);
-        gitHubLogoView.setFitWidth(this.widthHeight);
-        Image gitHubLogo = new Image("/images/github.png");
-        gitHubLogoView.setImage(gitHubLogo);
+    private void initCopyClipBoardBtn(){
+        this.copyBtn.setTooltip(new Tooltip("Copy to Clipboard"));
+        ImageView copyBtnView = new ImageView("/images/clipboard.png");
+        
+        copyBtnView.setFitWidth(GlobalButtonInfo.standardBtnHeight);
+        copyBtnView.setPreserveRatio(true);
+        copyBtnView.setSmooth(true);
+        copyBtnView.setCache(true);
+        
+        this.copyBtn.setGraphic(copyBtnView); 
+    }
+    private void initGitHubLink(){
+        ImageView gitHubLogoView = new ImageView("/images/github2.png");
+                
+        gitHubLogoView.setFitHeight(GlobalButtonInfo.standardMidIconHeight);
+        gitHubLogoView.setPreserveRatio(true);
+        gitHubLogoView.setSmooth(true);
+        gitHubLogoView.setCache(true);
         
         this.gitHubLink.setGraphic(gitHubLogoView);
     }
     
-    private void setLinkedInImage(){
-        ImageView linkedInLogoView = new ImageView();
-        linkedInLogoView.setFitHeight(this.widthHeight);
-        linkedInLogoView.setFitWidth(this.widthHeight);
-        Image linkedInLogo = new Image("/images/linkedin.png");
-        linkedInLogoView.setImage(linkedInLogo);
+    private void initLinkedInLink(){
+        ImageView linkedInLogoView = new ImageView("/images/linkedin.png");
+        
+        linkedInLogoView.setFitHeight(GlobalButtonInfo.standardMidIconHeight);
+        linkedInLogoView.setPreserveRatio(true);
+        linkedInLogoView.setSmooth(true);
+        linkedInLogoView.setCache(true);
         
         this.linkedInLink.setGraphic(linkedInLogoView);
     }
@@ -84,6 +101,13 @@ public class AboutController extends Application implements Initializable, Contr
     public void handleDoneBtnClick(ActionEvent action){
         Stage stage = (Stage) this.doneBtn.getScene().getWindow();
         stage.close(); 
+    }
+    
+    @FXML
+    public void handleCopyClipBoard(ActionEvent action){
+        ClipboardContent content = new ClipboardContent();
+        content.putString("stevendanielmcconnell@gmail.com");
+        getSystemClipboard().setContent(content);        
     }
 
     @Override

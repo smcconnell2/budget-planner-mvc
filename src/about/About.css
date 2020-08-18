@@ -1,0 +1,53 @@
+
+/* 
+    Created on : Aug 17, 2020, 10:36:58 PM
+    Author     : steve
+*/
+#header{
+    -fx-background-color: linear-gradient(to bottom right, #AEB6BF, #85929E, #85929E);
+}
+
+#title{
+    -fx-text-fill: #F2F3F4;
+}
+
+#creatorBackground{
+    -fx-background-color: #E6EAEA;
+}
+
+#TitleBackground{
+    -fx-background-color: #E6EAEA;
+}
+
+#contactBackground{
+    -fx-background-color: #E6EAEA;
+}
+
+#topTitles{
+    -fx-text-fill: #1C2833;
+}
+
+#copyBtn{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-opacity: 0.5;
+    -fx-cursor: hand;
+}
+
+#gitLabel, #linkLabel{
+    -fx-text-fill: #34495E;
+}
+
+#base{
+    -fx-background-color: #E6EAEA;
+}
+
+#doneBtn{
+    -fx-background-color: #2ECC71;
+    -fx-font-size: 15px;
+    -fx-text-fill: #F2F3F4;
+    -fx-cursor: hand;
+   
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="about.AboutController">
+    <stylesheets>
+        <URL value="@About.css" />
+    </stylesheets>
+    <children>
+      <HBox prefHeight="88.0" prefWidth="622.0">
+         <children>
+            <AnchorPane fx:id="header" prefHeight="117.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="title" layoutX="228.0" layoutY="14.0" prefHeight="70.0" prefWidth="167.0" text="ABOUT" textFill="#212f3d">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <GridPane layoutX="90.0" layoutY="98.0" prefHeight="307.0" prefWidth="443.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="133.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="310.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane fx:id="creatorBackground" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
+               <children>
+                  <Label fx:id="topTitles" layoutY="5.0" prefHeight="35.0" prefWidth="135.0" text="CREATOR:" textFill="#900c3f">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="linkLabel" prefHeight="35.0" prefWidth="135.0" text="LINKEDIN PAGE:" textFill="#c70039" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="gitLabel" prefHeight="35.0" prefWidth="135.0" text="GITHUB PAGE:" textFill="#c70039" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="titleBackground" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="topTitles" layoutY="5.0" prefHeight="35.0" prefWidth="135.0" text="TITLE:" textFill="#900c3f">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label prefHeight="35.0" prefWidth="220.0" text="Steven McConnell" GridPane.columnIndex="1">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="35.0" prefWidth="220.0" text="Software Engineer I" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="contactBackground" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="copyBtn" layoutX="399.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleCopyClipBoard" prefHeight="30.0" prefWidth="30.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Label fx:id="topTitles" layoutY="5.0" prefHeight="35.0" prefWidth="135.0" text="CONTACT:" textFill="#900c3f">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label prefHeight="21.0" prefWidth="238.0" text="stevendanielmcconnell@gmail.com" textFill="#4c94ff" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Hyperlink fx:id="gitHubLink" layoutX="253.0" layoutY="263.0" onAction="#handleGitHubLinkClick" prefHeight="70.0" prefWidth="70.0" />
+      <Hyperlink fx:id="linkedInLink" layoutX="254.0" layoutY="349.0" onAction="#handlLinkedInLinkClick" prefHeight="70.0" prefWidth="70.0" />
+      <HBox layoutX="1.0" layoutY="445.0" prefHeight="100.0" prefWidth="622.0">
+         <children>
+            <AnchorPane fx:id="base" prefHeight="102.0" prefWidth="622.0">
+               <children>
+                  <Button fx:id="doneBtn" layoutX="502.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleDoneBtnClick" prefHeight="61.0" prefWidth="106.0" text="DONE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="label" layoutX="212.0" layoutY="40.0" prefHeight="35.0" prefWidth="148.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -25,14 +25,13 @@
       <children>
          <AnchorPane prefHeight="111.0" prefWidth="903.0">
             <children>
-               <Label layoutX="490.0" layoutY="34.0" prefHeight="43.0" prefWidth="242.0" text="MY BUDGET" textFill="#cc9c76">
+               <Label alignment="CENTER" layoutX="391.0" layoutY="26.0" prefHeight="63.0" prefWidth="341.0" text="MY BUDGET" textFill="#ec7063">
                   <font>
-                     <Font name="Arial Bold" size="38.0" />
+                     <Font name="Arial Bold" size="54.0" />
                   </font>
                </Label>
-                  <Button fx:id="aboutBtn" layoutX="206.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleAboutBtnClick" prefHeight="63.0" prefWidth="129.0" text="ABOUT" />
-                  <Button fx:id="menuBtn" layoutX="27.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleMenuBtnClick" prefHeight="63.0" prefWidth="129.0" text="MENU" />
-                  <Separator layoutX="164.0" layoutY="28.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="33.0" />
+                  <Button fx:id="aboutBtn" layoutX="175.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAboutBtnClick" prefHeight="63.0" prefWidth="79.0" />
+                  <Button fx:id="menuBtn" layoutX="48.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMenuBtnClick" prefHeight="63.0" prefWidth="79.0" />
             </children>
          </AnchorPane>
       </children>

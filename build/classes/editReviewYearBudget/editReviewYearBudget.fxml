@@ -23,7 +23,7 @@
          <children>
             <AnchorPane prefHeight="100.0" prefWidth="667.0">
                <children>
-                  <Label layoutX="217.0" layoutY="29.0" text="REVIEW YEAR" textFill="#cc9c76">
+                  <Label layoutX="217.0" layoutY="29.0" text="REVIEW YEAR" textFill="#f39c12">
                      <font>
                         <Font name="Arial Bold" size="38.0" />
                      </font>
@@ -98,10 +98,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddYearIncomeClick" text="+" textFill="#68c489" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="addIncomeBtn" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddYearIncomeClick" textFill="#68c489" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </Button>
             <Label prefHeight="31.0" prefWidth="155.0" text="YEARLY INCOME">
                <padding>

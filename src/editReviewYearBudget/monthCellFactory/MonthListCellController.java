@@ -1,19 +1,19 @@
 package editReviewYearBudget.monthCellFactory;
 
 import budgetLogic.MonthBudget;
-import dialogWindows.Alerts;
 import eventHandlers.EditMonthEventHandler;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import utils.GlobalButtonInfo;
 
 /**
  * FXML Controller class
@@ -57,12 +57,26 @@ public class MonthListCellController extends ListCell<MonthBudget> {
          }   
     }   
     
-    private void setCellProperties(MonthBudget month){
+    private void setCellProperties(MonthBudget month){        
+            setButtonImage();
+            
             this.nameLabel.setText(month.getName());
             this.incomeLabel.setText(month.getMonthlyIncome().toString());
             this.totalExpensesLabel.setText(month.getMonthlyExpenses().toString());
 
             EditMonthEventHandler eventHandle = new EditMonthEventHandler(month);
             this.editMonthBtn.setOnAction(eventHandle);
+    }
+    
+    private void setButtonImage(){
+        this.editMonthBtn.setTooltip(new Tooltip("Edit Month"));
+        ImageView view = new ImageView("/images/pencil.png");
+        
+        view.setFitWidth(GlobalButtonInfo.standardBtnHeight);
+        view.setPreserveRatio(true);
+        view.setSmooth(true);
+        view.setCache(true);
+        
+        this.editMonthBtn.setGraphic(view); 
     }
 }

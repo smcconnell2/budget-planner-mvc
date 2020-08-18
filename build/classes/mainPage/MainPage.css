@@ -1,0 +1,36 @@
+/* 
+    Created on : Aug 17, 2020, 8:24:49 PM
+    Author     : steve
+*/
+#testBtn, #aboutBtn{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-opacity: 0.5;
+    -fx-cursor: hand;
+}
+
+#newBtn, #loadBtn, #quitBtn{
+    -fx-background-color: #2ECC71;
+    -fx-font-size: 20px;
+    -fx-text-fill: #F2F3F4;
+    -fx-cursor: hand;
+   
+}
+
+#mainImage{
+    -fx-opacity: .8;
+}
+
+#header{
+    -fx-background-color: linear-gradient(to bottom right, #3498DB, #2E86C1, #2E86C1);
+}
+
+#title{
+    -fx-text-fill: #F2F3F4;
+}
+
+#base{
+    -fx-background-color: #E6EAEA;
+}
