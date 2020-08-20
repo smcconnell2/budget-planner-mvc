@@ -18,7 +18,8 @@ public class Alerts {
         this.alert = new Alert(AlertType.ERROR);
         this.alert.setTitle(title);
         this.alert.setHeaderText(header);
-        Optional<ButtonType> result = this.alert.showAndWait(); 
+        //Optional<ButtonType> result = this.alert.showAndWait(); 
+        this.alert.showAndWait();
     }
     
     public boolean warning2Choice(String title, String header, String message){      
