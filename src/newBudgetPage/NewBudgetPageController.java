@@ -1,6 +1,5 @@
 package newBudgetPage;
 import dialogWindows.Alerts;
-import newBudgetPage.addExpense.AddExpenseController;
 import Structs.ExpenseStruct;
 import Structs.MonthStruct;
 import budgetLogic.*;
@@ -19,7 +18,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -144,28 +142,6 @@ public class NewBudgetPageController implements Initializable, Controller {
         updateYearlyIncomeTotal();   
     }
     
-    private boolean verifyAddNewMonthIncomePress(){
-        return this.alerts.warning2Choice("Warning", "Month Income already has a value.", "Overwrite Month Income value?");
-    }
-    
-    private boolean varifyBackPress(){
-        if(this.expensesList == null){
-            return true;
-        }
-        return this.alerts.warning2Choice("Warning", "All expense data will be lost!", "Do you still want to go back?");
-    }
-    
-    private boolean verifyNextPress(){
-        if(this.expensesList == null){
-            this.alerts.warning("Error", "You must add an expense to move on."
-                    + "\n\nTry adding a 'Bills' expense."
-                    + "\nOr an 'Entertainment' expense."
-            );
-            return false;
-        }
-        return true;
-    }
-    
     @FXML
     private void handleAddExpenseClick() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/newBudgetPage/addExpense/addExpense.fxml"));
@@ -188,15 +164,15 @@ public class NewBudgetPageController implements Initializable, Controller {
         if(this.expensesList == null){
             this.expensesList = FXCollections.observableArrayList();
         }
-        this.expensesList.add(new Expense(ExpenseStruct.priority, ExpenseStruct.name, ExpenseStruct.amount, ExpenseStruct.color));
+        this.expensesList.add(new Expense(ExpenseStruct.name, ExpenseStruct.amount, ExpenseStruct.color));
         updateExpenseListDisplay();
         updateMonthlyExpensesTotal();
         
     }
     
     private void updateExpenseListDisplay(){
-        SortedList<Expense> sorted = this.expensesList.sorted();
-        this.expensesList.setAll(sorted);
+        //SortedList<Expense> sorted = this.expensesList.sorted();
+        //this.expensesList.setAll(sorted);
         
         
         this.expensesListView.setItems(this.expensesList);
@@ -263,7 +239,10 @@ public class NewBudgetPageController implements Initializable, Controller {
     
     @FXML
     private void handleNextClick(ActionEvent event){
-        fillMonthStructValues();
+        if(this.expensesList != null){
+            fillMonthStructValues();
+        }
+        
         if(verifyNextPress()){
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/editReviewYearBudget/editReviewYearBudget.fxml"));          
@@ -278,5 +257,27 @@ public class NewBudgetPageController implements Initializable, Controller {
                 messageToUser("Error on NEXT button", TextColor.ERROR.getColor());
             }
         }     
+    }
+    
+    private boolean verifyAddNewMonthIncomePress(){
+        return this.alerts.warning2Choice("Warning", "Month Income already has a value.", "Overwrite Month Income value?");
+    }
+    
+    private boolean varifyBackPress(){
+        if(this.expensesList == null){
+            return true;
+        }
+        return this.alerts.warning2Choice("Warning", "All expense data will be lost!", "Do you still want to go back?");
+    }
+    
+    private boolean verifyNextPress(){
+        if(this.expensesList == null){
+            this.alerts.warning("Error", "You must add an expense to move on."
+                    + "\n\nTry adding a 'Bills' expense."
+                    + "\nOr an 'Entertainment' expense."
+            );
+            return false;
+        }
+        return true;
     }
 }

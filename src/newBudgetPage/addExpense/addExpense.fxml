@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newBudgetPage.addExpense.AddExpenseController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newBudgetPage.addExpense.AddExpenseController">
     
    <children>
-      <HBox prefHeight="100.0" prefWidth="586.0">
+      <HBox prefHeight="100.0" prefWidth="527.0">
          <children>
             <AnchorPane prefHeight="100.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="178.0" layoutY="29.0" text="ADD EXPENSE" textFill="#58d68d">
+                  <Label layoutX="127.0" layoutY="29.0" text="ADD EXPENSE" textFill="#58d68d">
                      <font>
                         <Font name="Arial Bold" size="38.0" />
                      </font>
@@ -28,15 +28,13 @@
             </AnchorPane>
          </children>
       </HBox>
-      <GridPane layoutX="117.0" layoutY="145.0" prefHeight="211.0" prefWidth="303.0">
+      <GridPane layoutX="117.0" layoutY="142.0" prefHeight="211.0" prefWidth="303.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="203.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -51,62 +49,42 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <ColorPicker fx:id="colorPicker" prefHeight="33.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label prefHeight="32.0" prefWidth="126.0" text="NAME">
-               <font>
-                  <Font name="Arial Bold" size="15.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="nameError" prefHeight="21.0" prefWidth="235.0" text="Enter valid name" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label prefHeight="32.0" prefWidth="126.0" text="PRIORITY" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial Bold" size="15.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="priorityError" prefHeight="21.0" prefWidth="235.0" text="Enter a valid number" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label prefHeight="32.0" prefWidth="126.0" text="AMOUNT" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Arial Bold" size="15.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="amountError" prefHeight="21.0" prefWidth="235.0" text="Enter a valid dollar amount" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label prefHeight="32.0" prefWidth="126.0" text="COLOR" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Arial Bold" size="15.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
             <TextField fx:id="nameField" promptText="Bills" GridPane.columnIndex="1" />
-            <TextField fx:id="priorityField" promptText="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="amountField" promptText="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="nameError" prefHeight="21.0" prefWidth="235.0" text="Enter a valid name" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label prefHeight="32.0" prefWidth="126.0" text="AMOUNT" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="amountField" promptText="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="amountError" prefHeight="21.0" prefWidth="235.0" text="Enter a valid dollar amount" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label prefHeight="32.0" prefWidth="126.0" text="COLOR" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <ColorPicker fx:id="colorPicker" prefHeight="33.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Label fx:id="label" layoutX="180.0" layoutY="379.0" prefHeight="43.0" prefWidth="177.0" />
-      <HBox layoutX="10.0" layoutY="400.0" prefHeight="100.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0">
+      <HBox layoutX="10.0" layoutY="421.0" prefHeight="109.0" prefWidth="527.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="421.0">
          <children>
-            <AnchorPane prefHeight="100.0" prefWidth="595.0">
+            <AnchorPane prefHeight="109.0" prefWidth="530.0">
                <children>
-                  <Button fx:id="closeWindow" layoutX="474.0" layoutY="38.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="90.0" text="SUBMIT" />
+                  <Button fx:id="closeWindow" layoutX="423.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="90.0" text="SUBMIT" />
+                  <Button fx:id="closeWindow1" layoutX="315.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="90.0" text="CANCEL" />
                </children>
             </AnchorPane>
          </children>

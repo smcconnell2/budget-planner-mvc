@@ -1,4 +1,4 @@
-package eventHandlers;
+package eventHandlers.editMonth;
 
 import budgetLogic.MonthBudget;
 import dialogWindows.Alerts;
@@ -10,11 +10,11 @@ import javafx.event.EventHandler;
  *
  * @author steve
  */
-public class EditMonthEventHandler implements EventHandler<ActionEvent>{
+public class EditMonth implements EventHandler<ActionEvent>{
     
     private MonthBudget month;
     
-    public EditMonthEventHandler(MonthBudget m){
+    public EditMonth(MonthBudget m){
         this.month = m;
     }
     @Override

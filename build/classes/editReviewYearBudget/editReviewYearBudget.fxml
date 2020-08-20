@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editReviewYearBudget.EditReviewYearBudgetController">
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editReviewYearBudget.EditReviewYearBudgetController">
    <children>
       <Label fx:id="label" layoutX="14.0" layoutY="311.0" prefHeight="27.0" prefWidth="208.0">
          <padding>
@@ -38,16 +38,16 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox layoutX="5.0" layoutY="500.0" prefHeight="100.0" prefWidth="686.0">
+      <HBox layoutY="571.0" prefHeight="100.0" prefWidth="825.0">
          <children>
-            <AnchorPane prefHeight="100.0" prefWidth="691.0">
+            <AnchorPane prefHeight="100.0" prefWidth="836.0">
                <children>
-                  <Button layoutX="594.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleFinishClick" prefHeight="43.0" prefWidth="78.0" text="FINISH" />
+                  <Button layoutX="733.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleFinishClick" prefHeight="43.0" prefWidth="78.0" text="FINISH" />
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <GridPane layoutX="283.0" layoutY="125.0" prefHeight="352.0" prefWidth="353.0">
+      <GridPane layoutX="291.0" layoutY="137.0" prefHeight="348.0" prefWidth="459.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="209.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="144.0" />
@@ -67,7 +67,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </padding>
             </Label>
-            <ListView fx:id="monthListView" prefHeight="230.0" prefWidth="340.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+            <ListView fx:id="monthListView" prefHeight="228.0" prefWidth="415.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
             <Label contentDisplay="CENTER" prefHeight="43.0" prefWidth="144.0" text="YEARLY EXPENSES" textAlignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -88,7 +88,7 @@
             <Label fx:id="yearlyIncomeValue" prefHeight="21.0" prefWidth="111.0" text="\$0" textFill="#a7a5a5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <GridPane layoutX="14.0" layoutY="217.0" prefHeight="93.0" prefWidth="252.0" AnchorPane.bottomAnchor="314.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="217.0">
+      <GridPane layoutX="25.0" layoutY="155.0" prefHeight="140.0" prefWidth="315.0" AnchorPane.bottomAnchor="376.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="485.0" AnchorPane.topAnchor="155.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="215.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="49.0" />

@@ -29,22 +29,18 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
 
     @FXML private Label label;
     @FXML private TextField nameField;
-    @FXML private TextField priorityField;
     @FXML private TextField amountField;
     @FXML private ColorPicker colorPicker;
     
     private boolean nameFieldValid = false;
-    private boolean priorityFieldValid = false;
     private boolean amountFieldValid = false;
     
     @FXML private Label nameError;
     @FXML private Label amountError;
-    @FXML private Label priorityError;
     
     @FXML private Button closeWindow;
      
     private String name = "";
-    private String priority = "";
     private String amount = "";
     private Color color; 
 
@@ -62,13 +58,6 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         }
         else{
             this.nameError.setVisible(false);
-        }
-        if(!priorityFieldValid){
-            this.priorityError.setTextFill(TextColor.ERROR.getColor());
-            this.priorityError.setVisible(true);
-        }
-        else{
-            this.priorityError.setVisible(false);
         }
         if(!amountFieldValid){
             this.amountError.setTextFill(TextColor.ERROR.getColor());
@@ -95,9 +84,6 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
     private boolean varifyInputSetStruct(){
         getFieldInput();
         
-        int tempP = ScrubUserData.parseInt(this.priority);
-        this.priorityFieldValid = tempP >= 0;
-        
         BigDecimal tempBD = ScrubUserData.parseToBigDecimal(this.amount);
         this.amountFieldValid = tempBD.intValue() >= 0;
         
@@ -110,8 +96,7 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         }
         
         
-        if(this.priorityFieldValid && this.amountFieldValid && this.nameFieldValid){
-            ExpenseStruct.priority = tempP;
+        if(this.amountFieldValid && this.nameFieldValid){
             ExpenseStruct.name = this.name;
             ExpenseStruct.amount = tempBD;
             ExpenseStruct.color = this.color;
@@ -122,7 +107,6 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
     
     private void getFieldInput(){
         this.name = this.nameField.getText();
-        this.priority = this.priorityField.getText();
         this.amount = this.amountField.getText();
         this.color = this.colorPicker.getValue(); 
     }

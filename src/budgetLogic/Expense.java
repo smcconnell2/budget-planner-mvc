@@ -24,9 +24,8 @@ public class Expense implements Serializable, Comparable<Expense>, Observable{
     
     
     
-    public Expense(int p, String n, BigDecimal a, Color c){
+    public Expense(String n, BigDecimal a, Color c){
         this.name = n;
-        this.priority = p;
         this.amount = a;
         this.color = c;
     }
@@ -48,8 +47,24 @@ public class Expense implements Serializable, Comparable<Expense>, Observable{
         return this.amount;
     }
     
+    public Color getColor(){
+        return this.color;
+    }
+    
     public void setPriority(int newP){
         this.priority = newP;
+    }
+    
+    public void setName(String newName){
+        this.name = newName;
+    }
+    
+    public void setAmount(BigDecimal newAmount){
+        this.amount = newAmount;
+    }
+    
+    public void setColor(Color newColor){
+        this.color = newColor;
     }
     
     @Override

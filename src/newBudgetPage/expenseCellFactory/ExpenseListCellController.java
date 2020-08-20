@@ -1,12 +1,10 @@
 package newBudgetPage.expenseCellFactory;
 
 import budgetLogic.Expense;
-import dialogWindows.Alerts;
-import eventHandlers.EditExpenseEventHandler;
+import newBudgetPage.editExpense.EditExpense;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,10 +20,10 @@ import javafx.scene.layout.GridPane;
  */
 public class ExpenseListCellController extends ListCell<Expense> {
     
-    @FXML private Label priorityLabel;
     @FXML private Label nameLabel;
     @FXML private Label amountLabel;
     @FXML private Button editExpenseBtn;
+    @FXML private Button removeExpenseBtn;
     @FXML private GridPane gridPane;
     
     private FXMLLoader loader;
@@ -57,12 +55,17 @@ public class ExpenseListCellController extends ListCell<Expense> {
         }   
     } 
     
+    @FXML public void handleRemoveExpense(ActionEvent even){
+        
+    }
+    
     private void setCellProperties(Expense expense){
-        this.priorityLabel.setText(expense.getPriority() + "");
         this.nameLabel.setText(expense.getName());
         this.amountLabel.setText(expense.getAmount() + "");
 
-        EditExpenseEventHandler eventHandle = new EditExpenseEventHandler(expense);
-        this.editExpenseBtn.setOnAction(eventHandle);       
-    }    
+        EditExpense eventHandle = new EditExpense(expense);
+        this.editExpenseBtn.setOnAction(eventHandle);
+    } 
+    
+    
 }

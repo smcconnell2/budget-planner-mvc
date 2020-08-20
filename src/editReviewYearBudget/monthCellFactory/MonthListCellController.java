@@ -1,7 +1,7 @@
 package editReviewYearBudget.monthCellFactory;
 
 import budgetLogic.MonthBudget;
-import eventHandlers.EditMonthEventHandler;
+import eventHandlers.editMonth.EditMonth;
 
 import java.io.IOException;
 
@@ -64,7 +64,7 @@ public class MonthListCellController extends ListCell<MonthBudget> {
             this.incomeLabel.setText(month.getMonthlyIncome().toString());
             this.totalExpensesLabel.setText(month.getMonthlyExpenses().toString());
 
-            EditMonthEventHandler eventHandle = new EditMonthEventHandler(month);
+            EditMonth eventHandle = new EditMonth(month);
             this.editMonthBtn.setOnAction(eventHandle);
     }
     
