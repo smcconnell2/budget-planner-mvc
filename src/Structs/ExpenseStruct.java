@@ -10,6 +10,7 @@ import static javafx.scene.paint.Color.WHITE;
  */
 public class ExpenseStruct {
     public static int priority = 0;
+    public static String prevName = ""; // used to identify previous expense if some edits are made
     public static String name = "";
     public static BigDecimal amount = new BigDecimal("0");
     public static Color color = WHITE;

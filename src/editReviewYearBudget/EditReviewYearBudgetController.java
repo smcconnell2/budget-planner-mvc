@@ -33,6 +33,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import newBudgetPage.NewBudgetPageController;
+import observer.Observer;
 import utils.GlobalButtonInfo;
 
 /**
@@ -40,7 +41,7 @@ import utils.GlobalButtonInfo;
  *
  * @author steve
  */
-public class EditReviewYearBudgetController implements Initializable, Controller {
+public class EditReviewYearBudgetController extends Observer implements Initializable, Controller {
     
     @FXML private Label label;
     @FXML private ListView monthListView;
@@ -73,6 +74,13 @@ public class EditReviewYearBudgetController implements Initializable, Controller
     public void messageToUser(String message, Paint color) {
         this.label.setTextFill(color);
         this.label.setText(message);
+    }
+    
+    @Override
+    public void update(Object newObj, Object oldObj) {
+        
+        messageToUser("updated", TextColor.TEST.getColor());
+        
     }
     
     private void initializeMonthList(){

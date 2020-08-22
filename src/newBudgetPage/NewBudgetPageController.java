@@ -34,6 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Paint;
+import observer.Observer;
 import utils.GlobalButtonInfo;
 import utils.ScrubUserData;
 
@@ -42,7 +43,9 @@ import utils.ScrubUserData;
  *
  * @author steve
  */
-public class NewBudgetPageController implements Initializable, Controller {
+
+// OBSERVER PATTERN: THIS IS OBSERVER
+public class NewBudgetPageController extends Observer implements Initializable, Controller {
 
     @FXML private Label label;
     @FXML private TextField monthIncomeField;
@@ -69,6 +72,15 @@ public class NewBudgetPageController implements Initializable, Controller {
         initAddExpense();
         initAddIncome();
     }
+    
+    @Override
+    public void update(Object newObj, Object oldObj) {
+        
+        messageToUser("updated", TextColor.TEST.getColor());
+        this.expensesList.remove(oldObj);
+        addExpense((Expense) newObj);
+        
+    }
 
     private void initAddExpense(){
         this.addExpenseBtn.setTooltip(new Tooltip("Add Expense"));
@@ -93,8 +105,7 @@ public class NewBudgetPageController implements Initializable, Controller {
         
         this.addIncomeBtn.setGraphic(view);
     }
-    
-    
+  
     public void messageToUser(String message, Paint color){
         this.label.setTextFill(color);
         this.label.setText(message);
@@ -156,11 +167,11 @@ public class NewBudgetPageController implements Initializable, Controller {
         
        if(ExpenseStruct.submitClicked){
            ExpenseStruct.submitClicked = false;
-           addExpense();
+           addExpenseFromStruct();
        }
     }
     
-    private void addExpense(){
+    private void addExpenseFromStruct(){
         if(this.expensesList == null){
             this.expensesList = FXCollections.observableArrayList();
         }
@@ -170,13 +181,19 @@ public class NewBudgetPageController implements Initializable, Controller {
         
     }
     
+    private void addExpense(Expense e){
+        this.expensesList.add(e);
+        updateExpenseListDisplay();
+        updateMonthlyExpensesTotal();
+    }
+    
     private void updateExpenseListDisplay(){
         //SortedList<Expense> sorted = this.expensesList.sorted();
         //this.expensesList.setAll(sorted);
         
         
         this.expensesListView.setItems(this.expensesList);
-        this.expensesListView.setCellFactory(customListView -> new ExpenseListCellController());
+        this.expensesListView.setCellFactory(customListView -> new ExpenseListCellController(this));
     }
     
     /**
@@ -279,5 +296,5 @@ public class NewBudgetPageController implements Initializable, Controller {
             return false;
         }
         return true;
-    }
+    }   
 }

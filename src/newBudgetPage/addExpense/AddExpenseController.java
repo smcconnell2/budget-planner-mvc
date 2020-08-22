@@ -71,7 +71,7 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
     @FXML
     public void onSubmitBtnClick(ActionEvent action){
         
-        if(varifyInputSetStruct()){
+        if(varifyInput()){
             ExpenseStruct.submitClicked = true;
             Stage stage = (Stage) this.closeWindow.getScene().getWindow();
             stage.close();   
@@ -81,7 +81,7 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         }
     }
     
-    private boolean varifyInputSetStruct(){
+    private boolean varifyInput(){
         getFieldInput();
         
         BigDecimal tempBD = ScrubUserData.parseToBigDecimal(this.amount);
@@ -97,12 +97,16 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         
         
         if(this.amountFieldValid && this.nameFieldValid){
-            ExpenseStruct.name = this.name;
-            ExpenseStruct.amount = tempBD;
-            ExpenseStruct.color = this.color;
+            setStruct(tempBD);
             return true;
         }               
         return false;
+    }
+    
+    private void setStruct(BigDecimal bD){
+        ExpenseStruct.name = this.name;
+        ExpenseStruct.amount = bD;
+        ExpenseStruct.color = this.color;
     }
     
     private void getFieldInput(){
