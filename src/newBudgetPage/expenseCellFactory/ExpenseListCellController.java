@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
+import newBudgetPage.NewBudgetPageController;
 
 /**
  * FXML Controller class
@@ -27,6 +28,12 @@ public class ExpenseListCellController extends ListCell<Expense> {
     @FXML private GridPane gridPane;
     
     private FXMLLoader loader;
+    
+    private Object observer;
+    
+    public ExpenseListCellController(Object observer){
+        this.observer = observer;
+    }
     
     @Override
     protected void updateItem(Expense expense, boolean empty){
@@ -63,7 +70,7 @@ public class ExpenseListCellController extends ListCell<Expense> {
         this.nameLabel.setText(expense.getName());
         this.amountLabel.setText(expense.getAmount() + "");
 
-        EditExpense eventHandle = new EditExpense(expense);
+        EditExpense eventHandle = new EditExpense(expense, this.observer);
         this.editExpenseBtn.setOnAction(eventHandle);
     } 
     

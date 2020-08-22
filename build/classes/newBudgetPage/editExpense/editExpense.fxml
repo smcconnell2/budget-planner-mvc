@@ -35,8 +35,8 @@
          <children>
             <AnchorPane prefHeight="106.0" prefWidth="581.0">
                <children>
-                  <Button layoutX="330.0" layoutY="29.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="107.0" text="CANCEL" />
-                  <Button layoutX="458.0" layoutY="29.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="107.0" text="SUBMIT" />
+                  <Button fx:id="cancelBtn" layoutX="330.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleOnCancel" prefHeight="63.0" prefWidth="107.0" text="CANCEL" />
+                  <Button layoutX="458.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleOnSubmit" prefHeight="63.0" prefWidth="107.0" text="SUBMIT" />
                   <Label fx:id="label" alignment="CENTER" layoutX="46.0" layoutY="32.0" prefHeight="21.0" prefWidth="184.0" text="Label" />
                </children>
             </AnchorPane>
@@ -100,6 +100,8 @@
             </Label>
             <TextField fx:id="nameField" promptText="Bills" GridPane.columnIndex="1" />
             <TextField fx:id="amountField" promptText="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="amountError" prefHeight="21.0" prefWidth="196.0" text="Enter a valid dollar amount" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="nameError" prefHeight="21.0" prefWidth="182.0" text="Enter a valid name" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
