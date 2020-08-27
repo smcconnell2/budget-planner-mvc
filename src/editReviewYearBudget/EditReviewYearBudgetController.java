@@ -124,10 +124,10 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
     private void handleBackButton(ActionEvent event) {     
         if(varifyBackPress()){
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("/newBudgetPage/newBudgetPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/setExpensePriority/setExpensePriority.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("New Budget");
+                stage.setTitle("Set Expense Priorities");
                 stage.setScene(scene);
                 stage.show();
             } catch(IOException ex){

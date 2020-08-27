@@ -1,4 +1,5 @@
 package newBudgetPage;
+import Structs.ExpenseListStruct;
 import dialogWindows.Alerts;
 import Structs.ExpenseStruct;
 import Structs.MonthStruct;
@@ -71,15 +72,28 @@ public class NewBudgetPageController extends Observer implements Initializable, 
     public void initialize(URL url, ResourceBundle rb) {
         initAddExpense();
         initAddIncome();
+        if(ExpenseListStruct.backPressed){
+            fillFields();
+        }
     }
     
     @Override
     public void update(Object newObj, Object oldObj) {
         
         messageToUser("updated", TextColor.TEST.getColor());
-        this.expensesList.remove(oldObj);
+        this.expensesList.remove((Expense)oldObj);
         addExpense((Expense) newObj);
         
+    }
+    
+    private void fillFields(){
+        messageToUser("Fill Filed", TextColor.TEST.getColor());
+        
+        this.expensesList = ExpenseListStruct.expenses;
+        ExpenseListStruct.backPressed = false;
+        
+        updateExpenseListDisplay();
+        updateMonthlyExpensesTotal();
     }
 
     private void initAddExpense(){
@@ -175,7 +189,12 @@ public class NewBudgetPageController extends Observer implements Initializable, 
         if(this.expensesList == null){
             this.expensesList = FXCollections.observableArrayList();
         }
-        this.expensesList.add(new Expense(ExpenseStruct.name, ExpenseStruct.amount, ExpenseStruct.color));
+        this.expensesList.add(new Expense(
+                (this.expensesList.size() + 1), 
+                ExpenseStruct.name, 
+                ExpenseStruct.amount, 
+                ExpenseStruct.color)
+        );
         updateExpenseListDisplay();
         updateMonthlyExpensesTotal();
         
@@ -244,11 +263,11 @@ public class NewBudgetPageController extends Observer implements Initializable, 
     }
     
     private void fillMonthStructValues(){
-       Map<Integer, Expense> tempMap = new HashMap<>();
+       /*Map<Integer, Expense> tempMap = new HashMap<>();
        for(Expense e: this.expensesList){
            tempMap.put(e.getPriority(),e);
        }      
-       MonthStruct.expenseMap = tempMap;
+       MonthStruct.expenseMap = tempMap;*/
        MonthStruct.income = this.defaultMonth.getIncome();
        MonthStruct.totalExpenses = this.defaultMonth.getTotalExpenses();
     }
@@ -256,16 +275,18 @@ public class NewBudgetPageController extends Observer implements Initializable, 
     
     @FXML
     private void handleNextClick(ActionEvent event){
+        ExpenseListStruct.expenses = this.expensesList;
+        
         if(this.expensesList != null){
             fillMonthStructValues();
         }
         
         if(verifyNextPress()){
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/editReviewYearBudget/editReviewYearBudget.fxml"));          
+                Parent root = FXMLLoader.load(getClass().getResource("/setExpensePriority/setExpensePriority.fxml"));          
                 Scene scene= new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Review Year Budget");
+                stage.setTitle("Set Expense Priorities");
                 stage.setScene(scene);
                 stage.show();
             

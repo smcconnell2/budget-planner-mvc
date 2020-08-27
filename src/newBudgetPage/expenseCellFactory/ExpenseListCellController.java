@@ -4,7 +4,6 @@ import budgetLogic.Expense;
 import newBudgetPage.editExpense.EditExpense;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
-import newBudgetPage.NewBudgetPageController;
 
 /**
  * FXML Controller class
@@ -61,10 +59,6 @@ public class ExpenseListCellController extends ListCell<Expense> {
             setGraphic(this.gridPane);
         }   
     } 
-    
-    @FXML public void handleRemoveExpense(ActionEvent even){
-        
-    }
     
     private void setCellProperties(Expense expense){
         this.nameLabel.setText(expense.getName());

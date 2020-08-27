@@ -65,7 +65,7 @@ public class EditExpense implements EventHandler<ActionEvent> {
     }
     
     private void updateExpense(){
-        this.newExpense = new Expense(ExpenseStruct.name, ExpenseStruct.amount, ExpenseStruct.color);
+        this.newExpense = new Expense(this.expense.getPriority(), ExpenseStruct.name, ExpenseStruct.amount, ExpenseStruct.color);
     }
     
     private void notifyObserver(){

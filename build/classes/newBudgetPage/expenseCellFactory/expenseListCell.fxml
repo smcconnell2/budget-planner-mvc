@@ -38,7 +38,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="removeExpenseBtn" mnemonicParsing="false" onAction="#handleRemoveExpense" text="-" GridPane.columnIndex="3">
+      <Button fx:id="removeExpenseBtn" mnemonicParsing="false" text="-" GridPane.columnIndex="3">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
