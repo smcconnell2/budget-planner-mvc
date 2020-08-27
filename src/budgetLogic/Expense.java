@@ -24,7 +24,8 @@ public class Expense implements Serializable, Comparable<Expense>, Observable{
     
     
     
-    public Expense(String n, BigDecimal a, Color c){
+    public Expense(int p, String n, BigDecimal a, Color c){
+        this.priority = p;
         this.name = n;
         this.amount = a;
         this.color = c;
