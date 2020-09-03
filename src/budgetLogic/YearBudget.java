@@ -38,9 +38,9 @@ public class YearBudget implements Serializable{
         this.yearlyIncome = yI;
     }
     
-    private void setAllToDefault(){
+    /*private void setAllToDefault(){
         for(int curMonth = 1; curMonth < 13; curMonth ++){
             monthMap.put(curMonth, new MonthBudget(curMonth, defaultMonthBudget.getExpenseMap()));
         }
-    }
+    }*/
 }

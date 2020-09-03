@@ -1,5 +1,6 @@
 package mainPage;
 
+import dialogWindows.Alerts;
 import enums.TextColor;
 import interfaces.Controller;
 import utils.GlobalButtonInfo;
@@ -9,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -58,7 +61,6 @@ public class MainPageController implements Initializable, Controller {
     }
     
     private void initAboutButton(){
-        this.aboutBtn.setTooltip(new Tooltip("About Creator"));
         ImageView view = new ImageView("/images/about.png");
         
         view.setFitHeight(GlobalButtonInfo.standardMidIconHeight);
@@ -96,12 +98,18 @@ public class MainPageController implements Initializable, Controller {
     
     @FXML
     private void handleQuitButton(ActionEvent event) throws IOException{
-        messageToUser("Quit clicked", TextColor.TEST.getColor());
+        boolean quit = new Alerts().warning2Choice(
+            "WARNING", 
+            "All unsaved data will be lost.",
+            "Are you sure you want to quit?"
+        );
+        if(quit){
+            Platform.exit();
+        }  
     }
         
     @FXML
     private void handleOnAbout(ActionEvent event) throws IOException{
-        messageToUser("About clicked", TextColor.TEST.getColor());
         loadWindow("/about/about.fxml"); 
     }
     
@@ -127,29 +135,44 @@ public class MainPageController implements Initializable, Controller {
      */
     @FXML
     public void handleTestButton(ActionEvent event){
+        boolean runShortcut = new Alerts().warning2Choice(
+                "WARNING", 
+                "Test: ShortCut to My Budget Page", 
+                "Proceed?"
+        );
         
-         try{
+        if(runShortcut){
+           try{
             Parent root = FXMLLoader.load(getClass().getResource("/finalBudgetPage/finalBudgetPage.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("MY Budget");
             stage.setScene(scene);
             stage.show();
-        } catch(IOException ex){
-            messageToUser("Error in test button.", TextColor.ERROR.getColor());
+            } catch(IOException ex){
+                messageToUser("Error in test button.", TextColor.ERROR.getColor());
+            } 
         }
-        
     }
     
     @FXML
     private void handleLoadButton(ActionEvent event) {
-        messageToUser("Load Clicked", TextColor.TEST.getColor());
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Load Budget");
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+        chooser.showOpenDialog(stage);
     }  
 
     @Override
     public void messageToUser(String message, Paint color) {
         this.label.setTextFill(color);
         this.label.setText(message);
+    }
+    
+    public void clearMessageToUser(){
+        this.label.setText("");
     }
     
 }

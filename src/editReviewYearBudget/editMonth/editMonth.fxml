@@ -1,11 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editReviewYearBudget.editMonth.EditMonthController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="781.0" prefWidth="905.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="editReviewYearBudget.editMonth.EditMonthController">
+    <stylesheets>
+        <URL value="@editmonth.css" />
+    </stylesheets>
+    <children>
+      <HBox prefHeight="106.0" prefWidth="905.0">
+         <children>
+            <AnchorPane prefHeight="106.0" prefWidth="906.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="310.0" layoutY="26.0" prefHeight="55.0" prefWidth="287.0" text="EDIT MONTH">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox layoutY="675.0" prefHeight="106.0" prefWidth="905.0">
+         <children>
+            <AnchorPane prefHeight="106.0" prefWidth="906.0">
+               <children>
+                  <Button layoutX="782.0" layoutY="37.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="SUBMIT" />
+                  <Button layoutX="659.0" layoutY="37.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="CANCEL" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <GridPane layoutX="84.0" layoutY="480.0" prefHeight="178.0" prefWidth="343.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="119.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutY="24.0" prefHeight="30.0" prefWidth="83.0" text="MONTH:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Label layoutX="14.0" layoutY="28.0" text="NAME" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutY="24.0" prefHeight="30.0" prefWidth="83.0" text="INCOME:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="77.0" prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutY="28.0" text="EXPENSE TOTAL:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Label layoutY="20.0" text="SPENT:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <ListView layoutX="476.0" layoutY="194.0" prefHeight="421.0" prefWidth="384.0" />
+      <GridPane layoutX="14.0" layoutY="260.0" prefHeight="31.0" prefWidth="413.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="147.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="10.0" prefWidth="219.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="51.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <TextField layoutX="42.0" layoutY="-1.0" prefHeight="31.0" prefWidth="152.0" text="0.00" />
+                  <Label layoutX="28.0" prefHeight="30.0" prefWidth="14.0" text="\$" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="46.0" prefWidth="107.0">
+               <children>
+                  <Label layoutX="41.0" layoutY="1.0" prefHeight="30.0" prefWidth="118.0" text="NEW INCOME:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="31.0" prefWidth="103.0" GridPane.columnIndex="2">
+               <children>
+                  <Button layoutX="7.0" layoutY="-1.0" mnemonicParsing="false" text="+" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <Label layoutX="476.0" layoutY="147.0" prefHeight="30.0" prefWidth="179.0" text="EXPENSES">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="829.0" layoutY="147.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="31.0" text="+" />
+      <Button layoutX="732.0" layoutY="623.0" mnemonicParsing="false" text="EDIT PRIORITIES" />
+   </children>
 </AnchorPane>

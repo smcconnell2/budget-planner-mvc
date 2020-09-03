@@ -13,6 +13,6 @@ import java.util.List;
  */
 public abstract class CellObserver {
     public Object subject;
-    public abstract void update(List list);
+    public abstract void update(int index1, int index2);
 }
 //List<Expense> itemsCopy = new ArrayList<>();

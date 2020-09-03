@@ -14,4 +14,5 @@ public class MonthStruct {
     public static BigDecimal income = new BigDecimal(0);
     public static BigDecimal totalExpenses = new BigDecimal(0);
     public static Map<Integer, Expense> expenseMap = new HashMap<>();
+    public static boolean backPressed = false;
 }

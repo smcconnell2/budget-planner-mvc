@@ -95,6 +95,10 @@ public class FinalBudgetPageController extends Application implements Initializa
         this.budgetTabLabel.setTextFill(color);
         this.budgetTabLabel.setText(message);
     }
+    
+    public void clearMessageToUser(){
+        //this.label.setText("");
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {

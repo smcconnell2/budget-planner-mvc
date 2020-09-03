@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaces;
-
-import javafx.scene.paint.Paint;
+package Structs;
 
 /**
  *
  * @author steve
  */
-public interface Controller {
-    public void messageToUser(String message, Paint color);
-    public void clearMessageToUser();
+public class DragDetectedStruct {
+    public static boolean dragging = false;
 }
-

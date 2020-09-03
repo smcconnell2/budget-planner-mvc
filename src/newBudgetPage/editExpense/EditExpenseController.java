@@ -72,8 +72,10 @@ public class EditExpenseController implements Initializable, Controller{
         displayErrorFields();
     }
     
-    
-    
+    public void clearMessageToUser(){
+        this.label.setText("");
+    }
+
     private void displayErrorFields(){
         if(!this.nameFieldValid){
             this.nameError.setTextFill(TextColor.ERROR.getColor());
