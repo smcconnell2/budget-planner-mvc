@@ -16,4 +16,5 @@ public class GlobalButtonInfo {
     public final static double standardImageHeight = 140;
     public final static double standardBigIconHeight = 100;
     public final static double standardMidIconHeight = 70;
+    public final static double standardSmallIconHeight = 40;
 }

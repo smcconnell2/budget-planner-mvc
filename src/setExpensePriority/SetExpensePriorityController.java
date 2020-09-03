@@ -9,16 +9,17 @@ import Structs.ExpenseListStruct;
 import Structs.MonthStruct;
 import budgetLogic.Expense;
 import enums.TextColor;
+
 import interfaces.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +33,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import newBudgetPage.NewBudgetPageController;
 import observer.CellObserver;
 import setExpensePriority.priorityExpenseCellFactory.PriorityExpenseCellController;
@@ -60,16 +60,40 @@ public class SetExpensePriorityController extends CellObserver implements Initia
         initListView();
     }    
     
-    public void update(List list){
-        messageToUser("Working", TextColor.TEST.getColor());
-        this.expensesList.setAll((ArrayList)list);
+    public void update(int dropped, int dragged){
+        updateExpenseList(dropped, dragged);
         this.listView.setItems(this.expensesList);
     }
+    
+    private void updateExpenseList(int dropped, int dragged){
+        dragged --;
+        dropped --;
+        Expense draggedExpense = this.expensesList.get(dragged);        
+        
+        this.expensesList.remove(dragged);
+        this.expensesList.add(dropped, draggedExpense);  
+        this.expensesList.setAll(updatePriorities());
+        this.listView.setItems(this.expensesList);
+    }
+    
+    private ArrayList<Expense> updatePriorities(){
+       ArrayList<Expense> array = new ArrayList<>(this.expensesList);
 
+       for(int i = 0, priority = 1; i < array.size(); i ++, priority ++){
+           array.get(i).setPriority(priority);
+       }
+
+       return array;
+    }
+    
     @Override
     public void messageToUser(String message, Paint color) {
         this.label.setText(message);
         this.label.setTextFill(color);
+    }
+    
+    public void clearMessageToUser(){
+        this.label.setText("");
     }
     
     private void initListView(){
@@ -102,9 +126,9 @@ public class SetExpensePriorityController extends CellObserver implements Initia
     
     @FXML
     private void handleBackClick(ActionEvent event){
-        messageToUser("Back Button Clicked", TextColor.TEST.getColor());
         if(varifyBackPress()){
             ExpenseListStruct.backPressed = true;
+            MonthStruct.backPressed = true;
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/newBudgetPage/newBudgetPage.fxml"));
                 Scene scene = new Scene(root);
@@ -125,15 +149,11 @@ public class SetExpensePriorityController extends CellObserver implements Initia
     
     private void updateMonthStructValues(){
         
-       int counter = 1;
        Map<Integer, Expense> tempMap = new HashMap<>();
        for(Expense e: this.expensesList){
            tempMap.put(e.getPriority(),e);
-           //tempMap.put(counter, e);
-           counter ++;
        }      
        MonthStruct.expenseMap = tempMap;
-       messageToUser("Here", TextColor.ERROR.getColor());
     }
     
     private boolean verifyNextPress(){

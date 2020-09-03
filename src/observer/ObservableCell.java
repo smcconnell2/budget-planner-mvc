@@ -12,5 +12,5 @@ import java.util.List;
  * @author steve
  */
 public interface ObservableCell {
-    public abstract void notifyObserver(List list);
+    public abstract void notifyObserver(int index1, int index2);
 }

@@ -5,3 +5,30 @@
 .mainFxmlClass {
 
 }
+
+#nextBtn, #backBtn{
+    -fx-background-color: #2ECC71;
+    -fx-font-size: 20px;
+    -fx-text-fill: #F2F3F4;
+    -fx-cursor: hand;
+   
+}
+
+#header{
+    -fx-background-color: linear-gradient(to bottom right, #3498DB, #2E86C1, #2E86C1);
+}
+
+#title{
+    -fx-text-fill: #F2F3F4;
+    -fx-font-weight: bold;
+}
+
+#base, #secondTitleBackground{
+    -fx-background-color: #E6EAEA;
+}
+
+#helpLabel{
+    -fx-text-fill: #34495E;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}

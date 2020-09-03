@@ -32,5 +32,12 @@ public class Alerts {
         }
         return false;
     }   
+    
+    public void information(String title, String header){
+        this.alert = new Alert(AlertType.INFORMATION);
+        this.alert.setTitle(title);
+        this.alert.setHeaderText(header);
+        this.alert.showAndWait();
+    }
 
 }

@@ -19,7 +19,7 @@ public class MonthBudget implements Serializable {
     private static final long serialVerisonUID = 2L;
     private final static Logger LOGGER = Logger.getLogger(MonthBudget.class.getName());
     
-    private MonthName name;    
+    private MonthName name;  
     private BigDecimal monthlyExpenses = new BigDecimal("0.00");
     private BigDecimal monthlyIncome = new BigDecimal("0.00");
     
@@ -33,8 +33,9 @@ public class MonthBudget implements Serializable {
         this.name = AssignMonthEnum.getMonthName(month);
     }
     
-    public MonthBudget(int month, Map expMap){
+    public MonthBudget(int month, Map expMap, BigDecimal income){
         this.name = AssignMonthEnum.getMonthName(month);
+        this.monthlyIncome = income;
         this.expensesMap = expMap;
     }
     
@@ -54,6 +55,10 @@ public class MonthBudget implements Serializable {
         return this.name.getReadable();
     }
     
+    public int getMonthValue(){
+        return this.name.getValue();
+    }
+    
     public BigDecimal getMonthlyIncome(){
         return this.monthlyIncome;
     }
@@ -61,6 +66,10 @@ public class MonthBudget implements Serializable {
     public BigDecimal getMonthlyExpenses(){
         updateMonthlyExpenses();
         return this.monthlyExpenses;
+    }
+    
+    public void setMonthIncome(BigDecimal value){
+        this.monthlyIncome = value;
     }
     
     private void updateMonthlyExpenses(){

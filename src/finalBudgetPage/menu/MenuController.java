@@ -52,6 +52,10 @@ public class MenuController extends Application implements Initializable, Contro
         this.label.setText(message);
     }
     
+    public void clearMessageToUser(){
+        this.label.setText("");
+    }
+    
     @FXML
     public void onNewBtnClick(){
         messageToUser("New Clicked", TextColor.TEST.getColor());
@@ -84,7 +88,6 @@ public class MenuController extends Application implements Initializable, Contro
     
     @FXML
     public void onQuitBtnClick(){
-       //messageToUser("Quit Clicked", TextColor.TEST.getColor());
         boolean quit = new Alerts().warning2Choice(
                 "WARNING", 
                 "All unsaved data will be lost.",

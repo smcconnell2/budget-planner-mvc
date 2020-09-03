@@ -2,6 +2,7 @@ package newBudgetPage.addExpense;
 
 
 import Structs.ExpenseStruct;
+import dialogWindows.Alerts;
 import enums.TextColor;
 import java.math.BigDecimal;
 
@@ -17,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import interfaces.Controller;
+import javafx.scene.image.ImageView;
 import utils.ScrubUserData;
 
 
@@ -31,6 +33,7 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
     @FXML private TextField nameField;
     @FXML private TextField amountField;
     @FXML private ColorPicker colorPicker;
+    @FXML private ImageView colorInfo;
     
     private boolean nameFieldValid = false;
     private boolean amountFieldValid = false;
@@ -49,6 +52,10 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         this.label.setText(message);
         
         displayErrorFields();
+    }
+    
+    public void clearMessageToUser(){
+        this.label.setText("");
     }
     
     private void displayErrorFields(){
@@ -79,6 +86,14 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         else{
             messageToUser("Please enter valid data", TextColor.ERROR.getColor());
         }
+    }
+    
+    @FXML
+    private void onColorInfo(){
+        new Alerts().information(
+                "Expense Color", 
+                "Used to differentiate Expenses from one " + "\n" + "another when displayed in a graph."
+        );
     }
     
     private boolean varifyInput(){

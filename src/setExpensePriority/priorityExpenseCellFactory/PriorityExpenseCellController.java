@@ -5,24 +5,20 @@
  */
 package setExpensePriority.priorityExpenseCellFactory;
 
-import Structs.ExpenseListStruct;
 import budgetLogic.Expense;
 import setExpensePriority.SetExpensePriorityController;
 import observer.ObservableCell;
 
 import interfaces.Controller;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -30,6 +26,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import utils.GlobalButtonInfo;
+import utils.ScrubUserData;
 
 
 /**
@@ -45,6 +43,7 @@ public class PriorityExpenseCellController extends ListCell<Expense> implements 
     
     private FXMLLoader loader;   
     private SetExpensePriorityController observer;
+    private Expense expense;
     private double fullOpacity = 1.0;
     private double dragOverOpacity = 0.3;
     
@@ -55,6 +54,7 @@ public class PriorityExpenseCellController extends ListCell<Expense> implements 
     @Override
     protected void updateItem(Expense expense, boolean empty){
         super.updateItem(expense, empty);
+        this.expense = expense;
         
         if(empty || expense == null) {
 
@@ -83,6 +83,10 @@ public class PriorityExpenseCellController extends ListCell<Expense> implements 
         this.nameLabel.setText(message);
     }
     
+    public void clearMessageToUser(){
+        //this.label.setText("");
+    }
+    
     private void setCellProperties(Expense expense){
         this.priorityLabel.setText(expense.getPriority() + "");
         this.nameLabel.setText(expense.getName());
@@ -91,15 +95,20 @@ public class PriorityExpenseCellController extends ListCell<Expense> implements 
     
     @FXML
     private void onDragDetected(Event event){
+        if(this.getItem() == null){
+            return;
+        }
+        
         Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
         ClipboardContent content = new ClipboardContent();
-        content.putString(this.nameLabel.getText());
-
-        Image move = new Image("/images/move.png");
+        content.putString(priorityLabel.getText());
         
-        dragboard.setDragView(
-            new Image("/images/move3.png")
-        );
+        double imageSize = GlobalButtonInfo.standardSmallIconHeight;
+        
+        Image moveImage = new Image("/images/move3.png", imageSize, imageSize, true, true);
+        
+        dragboard.setDragView(moveImage);
+        
         dragboard.setContent(content);
 
         event.consume();
@@ -107,7 +116,8 @@ public class PriorityExpenseCellController extends ListCell<Expense> implements 
     
     @FXML
     private void onDragOver(DragEvent event){
-        if(event.getGestureSource() != this){
+
+        if(event.getGestureSource() != this && event.getDragboard().hasString()){
             event.acceptTransferModes(TransferMode.MOVE);
         }  
         event.consume();
@@ -115,100 +125,47 @@ public class PriorityExpenseCellController extends ListCell<Expense> implements 
     
     @FXML
     private void onDragEnter(DragEvent event){
-        if(event.getGestureSource() != this){
+        if(event.getGestureSource() != this && event.getDragboard().hasString()){
             this.setOpacity(this.dragOverOpacity);
         }  
     }
     
     @FXML
     private void onDragExit(DragEvent event){
-        if(event.getGestureSource() != this){
+        if(event.getGestureSource() != this && event.getDragboard().hasString()){
             this.setOpacity(this.fullOpacity);
         }  
     }
     
     @FXML
     private void onDragDropped(DragEvent event){
-        
-        handleDropped2(event);
-       /* Dragboard db = event.getDragboard();
-        
-        ObservableList<Expense> items = getListView().getItems();
-        int draggedIndex = items.indexOf(db.getString());
-        int thisIndex = items.indexOf(this.getItem());
-        
-        items.set(draggedIndex, this.getItem());
-        items.set(thisIndex, (Expense)event.getSource());
-        
-
-        List<Expense> itemsCopy = new ArrayList<>();
-        itemsCopy.add(new Expense(1, "Test", new BigDecimal(0.0), Color.BLACK));
-        ObservableList<Expense> items2 = null;
-        items2.add(new Expense(1, "Test", new BigDecimal(0.0), Color.BLACK));
-        
-        this.getListView().setItems(items2);*/
-       
-        //this.getListView().setCellFactory(customListView -> new ExpenseListCellController(new NewBudgetPageController()));
-        
-        //List<Expense> itemsCopy = new ArrayList<>(this.getListView().getItems());
-        //this.getListView().getItems().setAll(itemsCopy);
-        
-        //this.listView.setItems(this.expensesList);
-        
-        //event.setDropCompleted(true);
-        //event.consume();
-    }
-    
-    private void handleDropped2(DragEvent event){
-        //Alerts alert = new Alerts();
-        //alert.warning("test", "test2");
-        
-        /*Dragboard db = event.getDragboard();
-        
-        ObservableList<Expense> items = this.getListView().getItems();
-        Expense test = (Expense)event.getSource();
-        int index = items.indexOf(test);*/
-        
-        List<Expense> itemsCopy = new ArrayList<>();
-        itemsCopy.add(new Expense(1, "Test", new BigDecimal(0.0), Color.BLACK));
-        notifyObserver(itemsCopy);
-        //this.getListView().getItems().add(new Expense(1, "Test", new BigDecimal(0.0), Color.BLACK));
-        
-        
-            //this.expensesList = FXCollections.observableArrayList();
-        /*
-        this.expensesList.add(new Expense(
-                (this.expensesList.size() + 1), 
-                ExpenseStruct.name, 
-                ExpenseStruct.amount, 
-                ExpenseStruct.color)
-        );
-        updateExpenseListDisplay();      
-    */
-    }
-    
-    private void handleDropped(DragEvent event){
+        if(getItem() == null){
+            return;
+        }
         Dragboard db = event.getDragboard();
+        boolean success = false;
         
-        ObservableList<Expense> items = this.getListView().getItems();
-        Expense test = (Expense)event.getSource();
-        int index = items.indexOf(test);
-        
-        List<Expense> itemsCopy = new ArrayList<>();
-        itemsCopy.add(new Expense(1, "Test", new BigDecimal(0.0), Color.BLACK));
-        ExpenseListStruct.expenses.add(new Expense(1, "Test", new BigDecimal(0.0), Color.BLACK));
-        //items.setAll(itemsCopy);
-        //this.getListView().getItems().setAll(itemsCopy);
-        //this.getListView().setCellFactory(customListView -> new ExpenseListCellController(new NewBudgetPageController()));
-        //String name = this.getListView().getId();
-        
-        //items.remove(test);
-        //this.getListView().setItems(items);
+        if(db.hasString()){
+
+            int indexDraggedFrom = ScrubUserData.parseInt(db.getString());      
+            int indexDroppedOn = this.expense.getPriority();
+
+            notifyObserver(indexDroppedOn, indexDraggedFrom);
+            success = true;
+            
+        }
+            event.setDropCompleted(success);
+            event.consume();
         
     }
     
-    public void notifyObserver(List list){
-        this.observer.update(list);
+    @FXML
+    private void onDragDone(DragEvent event){
+        event.consume();
+    }
+    
+    public void notifyObserver(int dropped, int dragged){
+        this.observer.update(dropped, dragged);
     }
     
 }

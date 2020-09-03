@@ -1,4 +1,5 @@
 package newBudgetPage;
+
 import Structs.ExpenseListStruct;
 import dialogWindows.Alerts;
 import Structs.ExpenseStruct;
@@ -7,12 +8,13 @@ import budgetLogic.*;
 import interfaces.Controller;
 import enums.TextColor;
 import newBudgetPage.expenseCellFactory.ExpenseListCellController;
+import observer.Observer;
+import utils.GlobalButtonInfo;
+import utils.ScrubUserData;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +37,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Paint;
-import observer.Observer;
-import utils.GlobalButtonInfo;
-import utils.ScrubUserData;
+
 
 /**
  * FXML Controller class
@@ -62,7 +62,6 @@ public class NewBudgetPageController extends Observer implements Initializable, 
     @FXML private ListView<Expense> expensesListView;
     
     private ObservableList<Expense> expensesList;
-    private DefaultMonthBudget defaultMonth = new DefaultMonthBudget();
     
     private Alerts alerts = new Alerts();
     /**
@@ -73,22 +72,32 @@ public class NewBudgetPageController extends Observer implements Initializable, 
         initAddExpense();
         initAddIncome();
         if(ExpenseListStruct.backPressed){
-            fillFields();
+            fillExpenseFields();
+        }
+        if(MonthStruct.backPressed){
+            fillMonthFields();
+            updateYearlyIncomeTotal();
         }
     }
     
     @Override
     public void update(Object newObj, Object oldObj) {
-        
-        messageToUser("updated", TextColor.TEST.getColor());
+
         this.expensesList.remove((Expense)oldObj);
-        addExpense((Expense) newObj);
-        
+        if(newObj != null){
+            this.expensesList.add((Expense) newObj);
+        }   
+        updateExpenseListDisplay();
+        updateMonthlyExpensesTotal();
     }
     
-    private void fillFields(){
-        messageToUser("Fill Filed", TextColor.TEST.getColor());
-        
+    private void fillMonthFields(){
+        MonthStruct.backPressed = false;   
+        this.monthIncomeValue.setText(MonthStruct.income.toString());
+        this.monthIncomeValue.setTextFill(TextColor.STANDARD.getColor());
+    }
+    
+    private void fillExpenseFields(){        
         this.expensesList = ExpenseListStruct.expenses;
         ExpenseListStruct.backPressed = false;
         
@@ -125,7 +134,7 @@ public class NewBudgetPageController extends Observer implements Initializable, 
         this.label.setText(message);
     }
     
-    private void clearMessageToUser(){
+    public void clearMessageToUser(){
         this.label.setText("");
     }
     
@@ -156,14 +165,12 @@ public class NewBudgetPageController extends Observer implements Initializable, 
             messageToUser("Enter a valid dollar amount", TextColor.ERROR.getColor());
         }
         else{
-            if(verifyAddNewMonthIncomePress()){
+            if(!tempBD.toString().equals(0) && verifyAddNewMonthIncomePress()){
                 this.monthIncomeValue.setText("$" + incomeValue);
-                this.defaultMonth.setIncome(incomeValue);
+                MonthStruct.income = tempBD;
+                this.monthIncomeValue.setTextFill(TextColor.STANDARD.getColor());
             } 
         }
-        
-        this.monthIncomeValue.setTextFill(TextColor.STANDARD.getColor());
-        
         updateYearlyIncomeTotal();   
     }
     
@@ -171,8 +178,7 @@ public class NewBudgetPageController extends Observer implements Initializable, 
     private void handleAddExpenseClick() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/newBudgetPage/addExpense/addExpense.fxml"));
         Parent parent = fxmlLoader.load();
-        //AddExpenseController dialogController = fxmlLoader.<AddExpenseController>getController();
-
+        
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -200,16 +206,7 @@ public class NewBudgetPageController extends Observer implements Initializable, 
         
     }
     
-    private void addExpense(Expense e){
-        this.expensesList.add(e);
-        updateExpenseListDisplay();
-        updateMonthlyExpensesTotal();
-    }
-    
-    private void updateExpenseListDisplay(){
-        //SortedList<Expense> sorted = this.expensesList.sorted();
-        //this.expensesList.setAll(sorted);
-        
+    private void updateExpenseListDisplay(){     
         
         this.expensesListView.setItems(this.expensesList);
         this.expensesListView.setCellFactory(customListView -> new ExpenseListCellController(this));
@@ -222,13 +219,12 @@ public class NewBudgetPageController extends Observer implements Initializable, 
      */
     private void updateMonthlyExpensesTotal(){
  
-        
         if(this.expensesList != null){
             BigDecimal total = new BigDecimal("0.00");
             for(Expense e: this.expensesList){
                 total = total.add(e.getAmount());
             }
-            this.defaultMonth.addTotalExpenses(total.toString());
+            MonthStruct.totalExpenses = total;
             this.totalMonthlyExpensesValue.setText("$" + total.toString());
         }
         else{
@@ -242,43 +238,33 @@ public class NewBudgetPageController extends Observer implements Initializable, 
     
     private void updateYearlyExpensesTotal(){
 
-        if(this.defaultMonth.getTotalExpenses().toString().equals("0")){
+        if(MonthStruct.totalExpenses.equals(0)){
             this.totalYearlyExpensesValue.setText("$0.00");
         }
         else{
             
-            this.totalYearlyExpensesValue.setText("$" + this.defaultMonth.getTotalExpenses().multiply(new BigDecimal("12")).toString());
+            this.totalYearlyExpensesValue.setText("$" + MonthStruct.totalExpenses.multiply(new BigDecimal("12")).toString());
         }
         this.totalYearlyExpensesValue.setTextFill(TextColor.STANDARD.getColor());  
     }
     
     private void updateYearlyIncomeTotal(){
-        if(this.defaultMonth.getIncome().toString().equals("0")){
+
+        if(MonthStruct.income.equals(0)){
             this.yearlyIncomeValue.setText("$0.00");
         }
         else{
-            this.yearlyIncomeValue.setText("$" + defaultMonth.getIncome().multiply(new BigDecimal("12")).toString());
+            this.yearlyIncomeValue.setText("$" + MonthStruct.income.multiply(new BigDecimal("12")).toString());
         }      
         this.yearlyIncomeValue.setTextFill(TextColor.STANDARD.getColor());
     }
-    
-    private void fillMonthStructValues(){
-       /*Map<Integer, Expense> tempMap = new HashMap<>();
-       for(Expense e: this.expensesList){
-           tempMap.put(e.getPriority(),e);
-       }      
-       MonthStruct.expenseMap = tempMap;*/
-       MonthStruct.income = this.defaultMonth.getIncome();
-       MonthStruct.totalExpenses = this.defaultMonth.getTotalExpenses();
-    }
-
     
     @FXML
     private void handleNextClick(ActionEvent event){
         ExpenseListStruct.expenses = this.expensesList;
         
         if(this.expensesList != null){
-            fillMonthStructValues();
+            //fillMonthStructValues();
         }
         
         if(verifyNextPress()){

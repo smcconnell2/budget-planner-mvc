@@ -39,7 +39,6 @@ public class AboutController extends Application implements Initializable, Contr
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //messageToUser("Initialized", TextColor.TEST.getColor());
         initGitHubLink();
         initLinkedInLink();
         initCopyClipBoardBtn();
@@ -83,6 +82,10 @@ public class AboutController extends Application implements Initializable, Contr
     public void messageToUser(String message, Paint color) {
         this.label.setTextFill(color);
         this.label.setText(message);
+    }
+    
+    public void clearMessageToUser(){
+        this.label.setText("");
     }
     
     @FXML

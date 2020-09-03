@@ -6,13 +6,17 @@
 package editReviewYearBudget;
 
 import Structs.MonthStruct;
+import Structs.YearStruct;
 import budgetLogic.MonthBudget;
 import editReviewYearBudget.monthCellFactory.MonthListCellController;
 import enums.TextColor;
 import interfaces.Controller;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
@@ -35,6 +40,7 @@ import javafx.stage.Stage;
 import newBudgetPage.NewBudgetPageController;
 import observer.Observer;
 import utils.GlobalButtonInfo;
+import utils.ScrubUserData;
 
 /**
  * FXML Controller class
@@ -46,6 +52,8 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
     @FXML private Label label;
     @FXML private ListView monthListView;
     @FXML private Button addIncomeBtn;
+    @FXML private TextField yearIncomeField;
+    @FXML private Label yearlyIncomeValue;
     
     private ObservableList<MonthBudget> monthList;
     
@@ -90,9 +98,8 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
         }
         
         for(int i = 1; i < 13; i ++){
-            this.monthList.add(new MonthBudget(i, MonthStruct.expenseMap));
+            this.monthList.add(new MonthBudget(i, MonthStruct.expenseMap, MonthStruct.income));
         }
-        //this.monthList.add(new MonthBudget(1, MonthStruct.expenseMap));
         updateMonthListDisplay();        
     }
     
@@ -104,8 +111,7 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
     
     @FXML
     public void handleFinishClick(ActionEvent event){
-        
-        initializeMonthList();
+        updateYearStruct();
         
          try{
             Parent root = FXMLLoader.load(getClass().getResource("/finalBudgetPage/finalBudgetPage.fxml"));
@@ -118,6 +124,15 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
             Logger.getLogger(NewBudgetPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    private void updateYearStruct(){
+        Map<Integer, MonthBudget> tempMap = new HashMap<>();
+        
+        for(int i = 0; i < this.monthList.size(); i ++){
+            tempMap.put(this.monthList.get(i).getMonthValue(), this.monthList.get(i));
+        }
+        YearStruct.monthMap = tempMap;
     }
     
     @FXML
@@ -145,10 +160,37 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
         return true;
     }
     
+    public void clearMessageToUser(){
+        this.label.setText("");
+    }
+    
     @FXML
     public void handleAddYearIncomeClick(){
-        messageToUser("Add Year Clicked", TextColor.TEST.getColor());
+        clearMessageToUser();
+        
+        String incomeValue = this.yearIncomeField.getText();
+        BigDecimal tempBD = ScrubUserData.parseToBigDecimal(incomeValue);
+        if(tempBD.intValue() < 0){
+            messageToUser("Enter a valid dollar amount", TextColor.ERROR.getColor());
+        }
+        else{
+            if(verifyAddNewYearIncomePress()){
+                this.yearlyIncomeValue.setText("$" + incomeValue);
+                
+            } 
+        }
+        
+        //this.yearIncomeField.setTextFill(TextColor.STANDARD.getColor());
+        
+        updateYearlyIncomeTotal();
     }
-
+    
+    private void updateYearlyIncomeTotal(){
+        
+    }
+    
+    private boolean verifyAddNewYearIncomePress(){
+        return true;
+    }
 
 }
