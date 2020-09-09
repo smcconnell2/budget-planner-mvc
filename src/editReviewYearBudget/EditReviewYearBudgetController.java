@@ -54,6 +54,7 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
     @FXML private Button addIncomeBtn;
     @FXML private TextField yearIncomeField;
     @FXML private Label yearlyIncomeValue;
+    @FXML private Label totalYearlyExpensesValue;
     
     private ObservableList<MonthBudget> monthList;
     
@@ -88,7 +89,23 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
     public void update(Object newObj, Object oldObj) {
         
         messageToUser("updated", TextColor.TEST.getColor());
+        this.monthList.remove((MonthBudget)oldObj);
+        if(newObj != null){
+            this.monthList.add((MonthBudget) newObj);
+        }
         
+        updateMonthListDisplay();
+        updateYearlyExpenses();
+    }
+    
+    private void updateYearlyExpenses(){
+        BigDecimal totalExpenses = new BigDecimal("0");
+        
+        for(MonthBudget m : this.monthList){
+            totalExpenses.add(m.getMonthlyExpenses());
+        }
+        
+        this.totalYearlyExpensesValue.setText(totalExpenses.toString());
     }
     
     private void initializeMonthList(){
@@ -106,7 +123,7 @@ public class EditReviewYearBudgetController extends Observer implements Initiali
     private void updateMonthListDisplay(){
         
         this.monthListView.setItems(this.monthList);
-        this.monthListView.setCellFactory(customListView -> new MonthListCellController());
+        this.monthListView.setCellFactory(customListView -> new MonthListCellController(this));
     }
     
     @FXML

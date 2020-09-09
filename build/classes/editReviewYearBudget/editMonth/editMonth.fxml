@@ -12,17 +12,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="781.0" prefWidth="905.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="editReviewYearBudget.editMonth.EditMonthController">
+<AnchorPane id="AnchorPane" prefHeight="781.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editReviewYearBudget.editMonth.EditMonthController">
     <stylesheets>
         <URL value="@editmonth.css" />
     </stylesheets>
     <children>
       <HBox prefHeight="106.0" prefWidth="905.0">
          <children>
-            <AnchorPane prefHeight="106.0" prefWidth="906.0">
+            <AnchorPane fx:id="header" prefHeight="106.0" prefWidth="906.0">
                <children>
-                  <Label alignment="CENTER" layoutX="310.0" layoutY="26.0" prefHeight="55.0" prefWidth="287.0" text="EDIT MONTH">
+                  <Label fx:id="title" alignment="CENTER" layoutX="310.0" layoutY="26.0" prefHeight="55.0" prefWidth="287.0" text="EDIT MONTH">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -33,18 +32,18 @@
       </HBox>
       <HBox layoutY="675.0" prefHeight="106.0" prefWidth="905.0">
          <children>
-            <AnchorPane prefHeight="106.0" prefWidth="906.0">
+            <AnchorPane fx:id="base" prefHeight="106.0" prefWidth="906.0">
                <children>
-                  <Button layoutX="782.0" layoutY="37.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="SUBMIT" />
-                  <Button layoutX="659.0" layoutY="37.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="CANCEL" />
+                  <Button fx:id="submitBtn" layoutX="782.0" layoutY="37.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="SUBMIT" />
+                  <Button fx:id="cancelBtn" layoutX="659.0" layoutY="37.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="CANCEL" />
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <GridPane layoutX="84.0" layoutY="480.0" prefHeight="178.0" prefWidth="343.0">
+      <GridPane fx:id="gridPane" layoutX="84.0" layoutY="480.0" prefHeight="178.0" prefWidth="343.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="119.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
+          <ColumnConstraints fx:id="gridPane" hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -60,7 +59,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Label layoutX="14.0" layoutY="28.0" text="NAME" />
+                  <Label fx:id="nameValue" layoutX="14.0" layoutY="28.0" text="NAME" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -70,7 +69,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="77.0" prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
+                  <Label fx:id="incomeValue" layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -80,7 +79,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
+                  <Label fx:id="expenseTotalValue" layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
@@ -90,7 +89,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
+                  <Label fx:id="spentValue" layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="152.0" text="\$0.00" />
                </children>
             </AnchorPane>
          </children>
@@ -130,6 +129,7 @@
          </font>
       </Label>
       <Button layoutX="829.0" layoutY="147.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="31.0" text="+" />
-      <Button layoutX="732.0" layoutY="623.0" mnemonicParsing="false" text="EDIT PRIORITIES" />
+      <Button fx:id="editprioritiesBtn" layoutX="732.0" layoutY="623.0" mnemonicParsing="false" text="EDIT PRIORITIES" />
+      <Label fx:id="label" layoutX="84.0" layoutY="370.0" prefHeight="31.0" prefWidth="231.0" />
    </children>
 </AnchorPane>

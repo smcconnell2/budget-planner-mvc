@@ -8,3 +8,49 @@ and open the template in the editor.
     Author     : steve
 */
 
+#submitBtn{
+    -fx-background-color: #2ECC71;
+    -fx-font-size: 20px;
+    -fx-text-fill: #F2F3F4;
+    -fx-cursor: hand;
+   
+}
+
+#cancelBtn{
+    -fx-background-color: #EC7063;
+    -fx-font-size: 20px;
+    -fx-text-fill: #F2F3F4;
+    -fx-cursor: hand;
+}
+
+#editprioritiesBtn{
+    -fx-background-color: #85929E;
+    -fx-text-fill: #F2F3F4;
+    -fx-cursor: hand;
+}
+
+#gridPane{
+    
+}
+
+#mainImage{
+    -fx-opacity: .8;
+}
+
+#header{
+    -fx-background-color: linear-gradient(to bottom right, #85929E, #5D6D7E, #5D6D7E);
+}
+
+#title{
+    -fx-font-size: 40px;
+    -fx-text-fill: #F2F3F4;
+}
+
+#helpText{
+    -fx-text-fill: #F4D03F;
+    
+}
+
+#base{
+    -fx-background-color: #E6EAEA;
+}
