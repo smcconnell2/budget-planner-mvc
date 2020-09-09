@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
@@ -13,7 +14,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
 
 <AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newBudgetPage.addExpense.AddExpenseController">
     <stylesheets>
@@ -22,9 +22,9 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="527.0">
          <children>
-            <AnchorPane prefHeight="100.0" prefWidth="600.0">
+            <AnchorPane fx:id="header" prefHeight="100.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="127.0" layoutY="29.0" text="ADD EXPENSE" textFill="#58d68d">
+                  <Label fx:id="title" layoutX="127.0" layoutY="29.0" text="ADD EXPENSE" textFill="#58d68d">
                      <font>
                         <Font name="Arial Bold" size="38.0" />
                      </font>
@@ -86,10 +86,10 @@
       <Label fx:id="label" layoutX="180.0" layoutY="379.0" prefHeight="43.0" prefWidth="177.0" />
       <HBox layoutX="10.0" layoutY="421.0" prefHeight="109.0" prefWidth="527.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="421.0">
          <children>
-            <AnchorPane prefHeight="109.0" prefWidth="530.0">
+            <AnchorPane fx:id="base" prefHeight="109.0" prefWidth="530.0">
                <children>
-                  <Button fx:id="closeWindow" layoutX="423.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="90.0" text="SUBMIT" />
-                  <Button fx:id="closeWindow1" layoutX="315.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="90.0" text="CANCEL" />
+                  <Button fx:id="submitBtn" layoutX="413.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="100.0" text="SUBMIT" />
+                  <Button fx:id="cancelBtn" layoutX="294.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSubmitBtnClick" prefHeight="46.0" prefWidth="108.0" text="CANCEL" />
                </children>
             </AnchorPane>
          </children>

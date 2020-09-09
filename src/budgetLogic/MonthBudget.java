@@ -1,5 +1,6 @@
 package budgetLogic;
 
+import Structs.MonthStruct;
 import enums.MonthName;
 import utils.AssignMonthEnum;
 
@@ -22,6 +23,7 @@ public class MonthBudget implements Serializable {
     private MonthName name;  
     private BigDecimal monthlyExpenses = new BigDecimal("0.00");
     private BigDecimal monthlyIncome = new BigDecimal("0.00");
+    private BigDecimal spent = new BigDecimal("0.00");
     
     private Map<Integer, Expense> expensesMap = new HashMap<Integer, Expense>(); 
     
@@ -39,7 +41,7 @@ public class MonthBudget implements Serializable {
         this.expensesMap = expMap;
     }
     
-        public boolean addCategory(Expense newCat){
+        public boolean addExpense(Expense newCat){
         if(prioritiesConflict(newCat.getPriority())){
             return false;
         }
@@ -49,6 +51,10 @@ public class MonthBudget implements Serializable {
     
             public void remove(int key){
         this.expensesMap.remove(key);
+    }
+
+    public Map<Integer, Expense> getExpenseMap(){
+        return this.expensesMap;
     }
             
     public String getName(){

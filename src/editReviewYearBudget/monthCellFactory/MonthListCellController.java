@@ -1,7 +1,9 @@
 package editReviewYearBudget.monthCellFactory;
 
 import budgetLogic.MonthBudget;
-import eventHandlers.editMonth.EditMonth;
+import editReviewYearBudget.EditReviewYearBudgetController;
+import editReviewYearBudget.editMonth.EditMonth;
+import editReviewYearBudget.editMonth.EditMonthController;
 
 import java.io.IOException;
 
@@ -28,7 +30,12 @@ public class MonthListCellController extends ListCell<MonthBudget> {
     @FXML private Button editMonthBtn;
     @FXML private GridPane gridPane;
     
+    private EditReviewYearBudgetController observer;
     private FXMLLoader loader;
+    
+    public MonthListCellController(EditReviewYearBudgetController observer){
+        this.observer = observer;
+    }
     
     @Override
     protected void updateItem(MonthBudget month, boolean empty){
@@ -64,7 +71,7 @@ public class MonthListCellController extends ListCell<MonthBudget> {
             this.incomeLabel.setText(month.getMonthlyIncome().toString());
             this.totalExpensesLabel.setText(month.getMonthlyExpenses().toString());
 
-            EditMonth eventHandle = new EditMonth(month);
+            EditMonth eventHandle = new EditMonth(month, this.observer);
             this.editMonthBtn.setOnAction(eventHandle);
     }
     

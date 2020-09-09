@@ -41,7 +41,7 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
     @FXML private Label nameError;
     @FXML private Label amountError;
     
-    @FXML private Button closeWindow;
+    @FXML private Button cancelBtn;
      
     private String name = "";
     private String amount = "";
@@ -80,7 +80,7 @@ public class AddExpenseController extends Dialog<ButtonType> implements Controll
         
         if(varifyInput()){
             ExpenseStruct.submitClicked = true;
-            Stage stage = (Stage) this.closeWindow.getScene().getWindow();
+            Stage stage = (Stage) this.cancelBtn.getScene().getWindow();
             stage.close();   
         }
         else{

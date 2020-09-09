@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/budgetLogic/DefaultMonthBudget.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/editReviewYearBudget/editMonth/editmonth.css</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/editExpense/EditExpenseController.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/editReviewYearBudget/EditReviewYearBudgetController.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/editReviewYearBudget/editMonth/EditMonthController.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/editExpense/editexpense.css</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/addExpense/AddExpenseController.java</file>
+            <file>file:/C:/Users/steve/Documents/NetBeansProjects/BudgetPlannerMVC/src/newBudgetPage/addExpense/addexpense.css</file>
         </group>
     </open-files>
 </project-private>
